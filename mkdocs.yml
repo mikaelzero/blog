@@ -78,15 +78,6 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
-  - i18n:
-      default_language: zh
-      languages:
-        en:
-          name: English
-          build: true
-        zh:
-          name: Chinese
-          build: true  
 
 # Customization
 extra:
