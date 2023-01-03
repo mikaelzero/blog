@@ -67,7 +67,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   font:
-    text: Roboto
+    text: Open Sans
     code: Roboto Mono
   favicon: assets/favicon.png
   icon:
@@ -79,15 +79,32 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+  - i18n:
+      default_language: zh
+      languages:
+        en:
+          name: English
+          build: true
+        zh:
+          name: Chinese
+          build: true  
 
 # Customization
 extra:
   analytics:
     provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
+    property: G-YQCF4Q8Q51
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mikaelzero
+  alternate:
+    - name: 简体中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/ 
+      lang: en
+    
 
 # Extensions
 markdown_extensions:

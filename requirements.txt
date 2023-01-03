@@ -32,5 +32,6 @@ pymdown-extensions>=9.9
 colorama>=0.4
 regex>=2022.4.24
 requests>=2.26
+mkdocs-static-i18n>=0.53
 
 # pip install -r requirements.txt
