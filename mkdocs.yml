@@ -23,6 +23,7 @@ site_name: mikaelzero's blog
 site_url: https://xrandroid.com/en
 site_author: mikaelzero
 site_description: Android,VR,Framework
+site_dir: 'en/'
 
 # Configuration
 theme:
