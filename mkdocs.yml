@@ -20,7 +20,7 @@
 
 # Project information
 site_name: mikaelzero's blog
-site_url: https://en.xrandroid.com/
+site_url: https://xrandroid.com/
 site_author: mikaelzero
 site_description: Android,VR,Framework
 
@@ -89,10 +89,10 @@ extra:
       link: https://github.com/mikaelzero
   alternate:
     - name: 简体中文
-      link: /
+      link: https://xrandroid.com/
       lang: zh
     - name: English
-      link: /en/ 
+      link: https://en.xrandroid.com/
       lang: en
     
 
