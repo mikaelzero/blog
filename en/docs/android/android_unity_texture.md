@@ -1,21 +1,19 @@
-## 普通纹理
+## Normal texture
 
-Android 下的普通纹理, 比如一张图片, 与 unity 使用有两个方案, 一个是直接跑在 unity 的渲染线程中, 在 unity 的渲染线程里进行渲染, 二是通过共享 context 的方式进行纹理共享
+Basic texture in Android, such as a picture, have two options for share texture with unity. One is to run directly in the rendering thread of unity and render in the rendering thread of unity. The other is to share textures by share context
 
-## 视频流 RTT 类的纹理
+## Texture for video stream RTT
 
-这类纹理代表的就是 camera 的视频流数据或者是手机投屏的纹理数据, 同样有两种方案, 以手机投屏为例
+This kind of texture represents the video stream data of the camera or the texture data of the screen projection of the mobile phone. There are also two ways
 
-### 离屏渲染
+Take the screen projection of the mobile phone as an example
 
-首先创建出 textureID 以及创建出对应的 surfacetexture 和 surface, 再与 virtual display 进行绑定, 这样渲染的纹理就和 textureid 绑定在一起
+First create the textureID and the corresponding surfaceTexture and surface, and then bind it to the virtual display, so that the rendered texture is bound to the textureID
 
-其次, 由于 unity 无法直接使用 opengl es 的 OES 的格式, 在渲染的时候, 需要创建一个新的类型为 texture2D 的纹理 id, 再通过 FBO 的方式绑定这个 id, 这样在 OES 下绘制的就会绘制到 texture2D 的纹理 ID 上, 之后再把这个纹理 ID 给 unity, unity 进行渲染
+Secondly, because unity cannot directly use the OES format of openGL ES, when rendering, it is necessary to create a new texture id of texture2D type, and then bind this id through FBO, so that what is drawn under OES will be drawn Go to the texture ID of texture2D, and then give this texture ID to unity, and unity renders
 
-### 让 unity 处理
+Unity cannot directly use the OES format of openGL ES, but Unity can receive the OES format, as long as Unity itself handles it through shader, so the process will be simpler, because the rendering is done in Unity
 
-unity 无法直接使用 opengl es 的 OES 的格式, 但是 unity 可以接收 OES 格式, 只要 unity 自己通过 shader 的方式处理, 所以流程会更加简单, 因为渲染都在 unity 做
+First, get the texture data of the virtual display as above
 
-首先和上面一样要拿到 virtual display 的纹理数据
-
-其次直接把这个纹理 ID 给 unity, unity 在脚本中绑定一个 shader, 通过这个 shader 进行渲染
+Secondly, directly give this texture ID to unity, and unity binds a shader in the script, and renders through this shader

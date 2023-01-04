@@ -94,7 +94,6 @@ extra:
     - name: English
       link: https://en.xrandroid.com/
       lang: en
-    
 
 # Extensions
 markdown_extensions:
@@ -140,34 +139,6 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Android:
-      - outline.md
-      - android与unity的纹理: android/android_unity_texture.md
-      - Android Sensor Framework: android/android_sensor_framework.md
-      - Android系统图解: android/android_system_image.md
-      - Graphic:
-          - Android显示原理: android/graphic/android_display_principle.md
-          - Android显示原理(手册): android/graphic/android_display_principle_manual.md
-      - 系统定制:
-          - frameworkTips: android/system/frameworkTips.md
-          - 编译framework: android/system/make_framework.md
-          - 禁止下拉状态栏: android/system/disable_pull_down_statusbar.md
-          - Android原生通知推送兼容8.0: android/system/android_notification_push_compatible_8.md
-          - androidO升级包制作流程: android/system/android_upgrade_package_production_process.md
-          - AndroidStudio配置系统签名: android/system/as_configuration_system_signature.md
-          - openAospInIntelij: android/system/openAospInIntelij.md
-      - surfaceflinger:
-          - BufferQueue: android/surfaceflinger/BufferQueue.md
-          - SurfaceFlinger的主动刷新: android/surfaceflinger/active_refresh_of_surfaceflinger.md
-  - VR:
-      - (译)一张VR图像帧的生命周期: vr/a_vr_frame_life.md
-      - (译)移动VR开发时要避免的PC渲染技术: vr/pc_rendering_avoid_when_developing_for_mobile_vr.md
-      - VR相关技术词汇: vr/vr_related_technical_vocabulary.md
-      - VR延时解决方案-理论: vr/vr_delay_solution_theory.md
-      - VR中的延迟: vr/latency_in_vr.md
-  - 研究问题记录:
-      - 窗口显示和隐藏: record/window_showing_hiding.md
-      - 渲染流程研究: record/rendering_research.md
-      - singlebuffer和vsync的关系: record/between_singlebuffer_vsync.md
-      - surfaceflinger修改layer层级: record/surfaceflinger_change_layer_level.md
-      - unity渲染出错问题: record/unity_render_error.md
-      - virtualDisplay原理研究: record/principle_virtualDisplay.md
+      - Share texture between android and unity: android/android_unity_texture.md
+  - QuestionRecord:
+      - Change layer level in surfaceflinger: record/surfaceflinger_change_layer_level.md
