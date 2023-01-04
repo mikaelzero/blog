@@ -1,0 +1,185 @@
+# Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Project information
+site_name: mikaelzero's blog
+site_url: https://xrandroid.com/
+site_author: mikaelzero
+site_description: Android,VR,Framework
+
+# Configuration
+theme:
+  name: material
+  custom_dir: ../material/.overrides
+  features:
+    # - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Open Sans
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+
+# Customization
+extra:
+  analytics:
+    provider: google
+    property: G-YQCF4Q8Q51
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mikaelzero
+  alternate:
+    - name: 简体中文
+      link: https://xrandroid.com/
+      lang: zh
+    - name: English
+      link: https://en.xrandroid.com/
+      lang: en
+    
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  # - pymdownx.emoji:
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: index.md
+  - Android:
+      - outline.md
+      - android与unity的纹理: android/android_unity_texture.md
+      - Android Sensor Framework: android/android_sensor_framework.md
+      - Android系统图解: android/android_system_image.md
+      - Graphic:
+          - Android显示原理: android/graphic/android_display_principle.md
+          - Android显示原理(手册): android/graphic/android_display_principle_manual.md
+      - 系统定制:
+          - frameworkTips: android/system/frameworkTips.md
+          - 编译framework: android/system/make_framework.md
+          - 禁止下拉状态栏: android/system/disable_pull_down_statusbar.md
+          - Android原生通知推送兼容8.0: android/system/android_notification_push_compatible_8.md
+          - androidO升级包制作流程: android/system/android_upgrade_package_production_process.md
+          - AndroidStudio配置系统签名: android/system/as_configuration_system_signature.md
+          - openAospInIntelij: android/system/openAospInIntelij.md
+      - surfaceflinger:
+          - BufferQueue: android/surfaceflinger/BufferQueue.md
+          - SurfaceFlinger的主动刷新: android/surfaceflinger/active_refresh_of_surfaceflinger.md
+  - VR:
+      - (译)一张VR图像帧的生命周期: vr/a_vr_frame_life.md
+      - (译)移动VR开发时要避免的PC渲染技术: vr/pc_rendering_avoid_when_developing_for_mobile_vr.md
+      - VR相关技术词汇: vr/vr_related_technical_vocabulary.md
+      - VR延时解决方案-理论: vr/vr_delay_solution_theory.md
+      - VR中的延迟: vr/latency_in_vr.md
+  - 研究问题记录:
+      - 窗口显示和隐藏: record/window_showing_hiding.md
+      - 渲染流程研究: record/rendering_research.md
+      - singlebuffer和vsync的关系: record/between_singlebuffer_vsync.md
+      - surfaceflinger修改layer层级: record/surfaceflinger_change_layer_level.md
+      - unity渲染出错问题: record/unity_render_error.md
+      - virtualDisplay原理研究: record/principle_virtualDisplay.md
+  - OpenGL:
+      - GL闲杂笔记: openGL/gl_notes.md
+  - C++:
+      - 开源库整理: cpp/github_lib.md
+      - C++ list: cpp/cpp_list.md
+      - c++ deque: cpp/cpp_deque.md
+      - C指针笔记(1): cpp/C_point_note_1.md
+      - C指针笔记(2): cpp/C_point_note_2.md
+      - 关键字: cpp/keywords.md
+  - 工具:
+      - 免费工具和网站: tools/free_tools_sites.md
+      - 英语各种资料和网站: tools/english_tools.md
