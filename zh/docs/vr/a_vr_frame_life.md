@@ -6,7 +6,7 @@
 - **从帧提交给合成器**: 帧数据如何在 app 和合成器之间共享
 - **从合成到显示**: Compositor 的责任以及最终图像如何显示在 HMD(头显示) 显示器上
 
-# 第一阶段：从帧生成到提交
+## 第一阶段：从帧生成到提交
 
 对于 Quest 应用程序, 我们使用 VrApi / OpenXR 与 HMD 进行通信. 具体到渲染部分, 这些 API 负责以下工作：
 
@@ -15,7 +15,7 @@
 
 对于特定的应用程序, 根据它是使用 VrApi 还是 OpenXR, 行为可能会有所不同, 因此我们将分别解决.
 
-## VrApi Application
+### VrApi Application
 
 下面是一个典型的多线程 VrApi 应用程序的框架：
 
@@ -34,7 +34,7 @@
 - 由于历史原因, `vrapi_BeginFrame / vrapi_WaitFrame` 是后来添加的, 部分早期的应用程序只能访问 `vrapi_SubmitFrame2`.
 - 我们发布了[PhaseSync](https://developer.oculus.com/blog/bringing-phase-sync-to-mobile-vr/)作为 VrApi 的一个 opt-in 功能, 它将帧同步移到了`vrapi_WaitFrame` 以更好地管理延迟. 所以, 帧行为更类似于 OpenXR 应用, 我们将在下面讨论.
 
-## OpenXR Application
+### OpenXR Application
 
 与 VrApi 应用相比, OpenXR 应用存在关键的区别：
 
@@ -49,7 +49,7 @@
 
 总的来说, 无论你是在开发 VrApi 应用还是 OpenXR 应用, 有两个主要的阻塞源；一个来自帧同步, 一个来自交换链可用性检查. 如果你事先执行了 Systrace 抓取, 你将看到一个熟悉的结果. 当应用以满 FPS 运行时, 这种 sleep 是可以预期的, 因为除了优化延迟之外, 它们（像 eglSwapBuffer 这样的传统 vsync 函数）同时阻塞应用程序以超出显示器允许的速度呈现. 当应用程序无法达到目标 FPS 时, 情况就会变得更为复杂. 例如, 由于新帧延迟, 合成器可能仍在使用以前提交的图像. 这导致“交换链可用性检查”阻塞变长, 并且可能导致帧同步阻塞. 这就是为什么当应用程序已经很慢的时候, 应用程序仍然在阻塞上花费时间. 出于这些原因, 我们不建议使用 FPS 作为性能剖析指标, 因为它通常不能准确反映应用工作负载. gpusystrace 和 Perfetto 是在 CPU 和 GPU 端测量应用性能的更好工具.
 
-# 第二阶段：从帧提交到合成器
+## 第二阶段：从帧提交到合成器
 
 我们的 VR 运行时是围绕 Out of Process Composition（OOPC）这一概念设计. 我们有一个独立的进程：VR Compositor. 它在后台运行, 同时从所有客户端收集帧提交信息, 然后进行合成和显示.
 
@@ -57,7 +57,7 @@
 
 VR 应用是从中收集帧信息的客户端之一. 提交的帧数据将通过进程间通信(IPC)发送到 VR 合成器. 我们不需要将 eye buffer 的副本发送到合成器进程, 因为这意味着大量的数据. 相反, eye buffer 的内存所有权从交换链分配开始就属于合成器进程. 所以, 只需要交换链句柄和交换索引. 但是, 我们确实需要保证数据的访问是安全的, 这意味着合成器应该只在应用完成渲染后读取数据, 并且应用程序不应该在合成器使用数据时修改数据. 这是通过 FenceChecker 和 FrameRetirement 系统完成.
 
-## FenceChecker
+### FenceChecker
 
 Quest GPU（高通 Adreno 540/650）是 Tile-Based 架构, 其只在提交所有调用后才开始工作（直到显式或隐式 flushing）. 当应用程序调用`SubmitFrame` 时, 通常 GPU 才刚刚开始渲染相应的 eye texture（因为大多数引擎在调用 SubmitFrame 之前都会显式 flush GPU）. 如果这个时候合成器立即读取提交的图像, 它将会接收未完成的数据, 从而导致图形损坏和撕裂.
 
@@ -71,7 +71,7 @@ systrace 抓取的流程图：
 
 提示：对于大多数应用程序, FenceChecker 标记的长度与应用程序 GPU 成本大致相同.
 
-## Frame Retirement
+### Frame Retirement
 
 FenceChecker 有助于将眼睛纹理的所有权从应用程序转移到合成器, 但这只是周期的一半. 在帧完成显示后, 合成器需要将数据的所有权交还给应用程序, 以便它可以再次使用 eye texture, 这称为“Frame Retirement”
 
@@ -83,7 +83,7 @@ VR 合成器设计用于处理延迟（暂停）帧, 如果预期帧未按时交
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/LpgxuJ.jpg)
 
-# 第三阶段：从合成到显示
+## 第三阶段：从合成到显示
 
 这时, 帧（eye textures）已到达合成器, 需要在 VR 显示屏显示. 根据硬件的不同, 这大致会发生涉及以下组件的一系列步骤：
 
@@ -100,7 +100,7 @@ VR 合成器设计用于处理延迟（暂停）帧, 如果预期帧未按时交
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/QLgGDj.jpg)
 
-# 总结
+## 总结
 
 我们希望这篇概述有助于 Quest 开发者进一步理解系统, 并帮助你构建更好的 VR 应用程序. 从应用渲染开始到显示结束, 我们介绍了一个典型的 VR 帧生命周期. 我们解释了客户端应用和合成器服务器之间的数据流. 如果你有问题或反馈, 请通过 [Oculus 开发者论坛](https://forums.oculusvr.com/t5/Developer/ct-p/developer)告诉我们.
 
