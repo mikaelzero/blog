@@ -14,6 +14,7 @@
 
 ```cmake
 -DCMAKE_TOOLCHAIN_FILE=YOUR_NDK_PATH/build/cmake/android.toolchain.cmake
+-DCMAKE_TOOLCHAIN_FILE=/Users/miuyongjun/Documents/android-ndk-r21e/build/cmake/android.toolchain.cmake
 -DANDROID_ABI=arm64-v8a
 -DANDROID_PLATFORM=android-21
 ```
