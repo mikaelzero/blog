@@ -140,5 +140,6 @@ nav:
   - Home: index.md
   - Android:
       - Share texture between android and unity: android/android_unity_texture.md
+      - Use c++ in flutter by ffi: android/use_cpp_in_flutter.md
   - QuestionRecord:
       - Change layer level in surfaceflinger: record/surfaceflinger_change_layer_level.md

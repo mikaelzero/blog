@@ -179,6 +179,7 @@ nav:
         - 编译错误: cpp/compile_error.md
         - Clion中交叉编译第三方库: cpp/compile_lib_with_ndk.md
         - Clion中配置NDK: cpp/clion_ndk_comile.md
+        - 在flutter中使用ffi调用c++: cpp/use_cpp_in_flutter.md
         - CMAKE语法: cpp/cmake_rule.md
       - 语法:
         - C++ list: cpp/cpp_list.md
