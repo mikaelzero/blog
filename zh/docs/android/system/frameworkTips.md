@@ -19,7 +19,7 @@ device 中对应的 product 的 BoardConfig.mk, 修改 userdata 空间大小
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := ArparaHome
+LOCAL_MODULE := AppName
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(LOCAL_MODULE).apk
@@ -40,5 +40,5 @@ include $(BUILD_PREBUILT)
 PRODUCT_PACKAGES += \
         IVOta \
                 IVOtaAssistant \
-                ArparaHome
+                AppName
 ```
