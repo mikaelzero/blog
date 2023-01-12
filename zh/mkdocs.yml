@@ -150,6 +150,7 @@ nav:
       - 系统定制:
           - frameworkTips: android/system/frameworkTips.md
           - 编译framework: android/system/make_framework.md
+          - 禁止安装某些类型的APP: android/system/disallow_app_install.md
           - 禁止下拉状态栏: android/system/disable_pull_down_statusbar.md
           - Android原生通知推送兼容8.0: android/system/android_notification_push_compatible_8.md
           - androidO升级包制作流程: android/system/android_upgrade_package_production_process.md
