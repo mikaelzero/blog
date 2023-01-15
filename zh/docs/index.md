@@ -1,6 +1,4 @@
 ---
 template: home.html
-title: XR ANDROID
+title: XR
 ---
-
-Welcome to XR ANDROID.
