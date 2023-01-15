@@ -59,10 +59,10 @@ theme:
   font:
     text: Open Sans
     code: Roboto Mono
-  favicon: assets/favicon.png
+  favicon: assets/logo.png
   icon:
     logo: logo
-  logo: assets/favicon.png
+  logo: assets/logo.png
 
 # Plugins
 plugins:
