@@ -22,12 +22,12 @@
 site_name: mikaelzero's blog
 site_url: https://xrandroid.com/
 site_author: mikaelzero
-site_description: Android,VR,Framework
+site_description: Android、VR、Framework、OpenGL、C++/JAVA/Kotlin/Python/Shell
 
 # Configuration
 theme:
   name: material
-  custom_dir: ../material/.overrides
+  custom_dir: ../material/.overrides_en
   features:
     # - announce.dismiss
     - content.action.edit
@@ -53,18 +53,8 @@ theme:
     - toc.follow
     # - toc.integrate
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    primary: white
+    accent: teal
   font:
     text: Open Sans
     code: Roboto Mono

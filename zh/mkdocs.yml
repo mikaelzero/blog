@@ -22,7 +22,7 @@
 site_name: mikaelzero's blog
 site_url: https://xrandroid.com/
 site_author: mikaelzero
-site_description: Android,VR,Framework
+site_description: Android、VR、Framework、OpenGL、C++/JAVA/Kotlin/Python/Shell
 
 # Configuration
 theme:
@@ -53,18 +53,9 @@ theme:
     - toc.follow
     # - toc.integrate
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    primary: white
+    accent: teal
+
   font:
     text: Open Sans
     code: Roboto Mono
@@ -141,7 +132,6 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Android:
-      - outline.md
       - android与unity的纹理: android/android_unity_texture.md
       - Android Sensor Framework: android/android_sensor_framework.md
       - Android系统图解: android/android_system_image.md
