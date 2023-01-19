@@ -22,7 +22,9 @@
 site_name: mikaelzero's blog
 site_url: https://xrandroid.com/
 site_author: mikaelzero
-site_description: Android、VR、Framework、OpenGL、C++/JAVA/Kotlin/Python/Shell
+site_desc1: WELCOME TO
+site_desc2: MIKAELZERO
+site_description: Android、VR、Framework、AV、OpenGL、C++/JAVA/Kotlin/Python/Shell
 
 # Configuration
 theme:
@@ -126,6 +128,9 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra_css:
+  - assets/stylesheets/extra.css
+  
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

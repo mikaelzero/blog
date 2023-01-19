@@ -22,7 +22,9 @@
 site_name: mikaelzero's blog
 site_url: https://xrandroid.com/
 site_author: mikaelzero
-site_description: Android、VR、Framework、OpenGL、C++/JAVA/Kotlin/Python/Shell
+site_desc1: WELCOME TO
+site_desc2: MIKAELZERO
+site_description: Android、VR、Framework、AV、OpenGL、C++/JAVA/Kotlin/Python/Shell
 
 # Configuration
 theme:
@@ -141,6 +143,10 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra_css:
+  - assets/stylesheets/extra.css
+
+
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -167,6 +173,7 @@ nav:
           - BufferQueue: android/surfaceflinger/BufferQueue.md
           - SurfaceFlinger的主动刷新: android/surfaceflinger/active_refresh_of_surfaceflinger.md
   - VR:
+      - vr/index.md
       - 基础:
         - VR相关技术词汇: vr/vr_related_technical_vocabulary.md
       - (译)一张VR图像帧的生命周期: vr/a_vr_frame_life.md
@@ -181,7 +188,8 @@ nav:
       - unity渲染出错问题: record/unity_render_error.md
       - virtualDisplay原理研究: record/principle_virtualDisplay.md
   - OpenGL:
-      - GL闲杂笔记: openGL/gl_notes.md
+      - opengl/index.md
+      - GL闲杂笔记: opengl/gl_notes.md
   - C++:
       - 编译:
         - 编译错误: cpp/compile_error.md
@@ -197,8 +205,15 @@ nav:
         - 关键字: cpp/keywords.md
       - 开源库整理: cpp/github_lib.md
   - 音视频:
-      - 色彩格式: av/data_format.md
-      - 音频采集到输出: av/audio_input_output.md
+      - av/index.md
+      - 色彩格式(YUV RGB): av/data_format.md
+      - 音频:
+        - 音频采集到输出: av/audio_input_output.md
+      - 视频:
+        - 视频基础: av/video_outline.md
+        - 视频编码压缩: av/video_codec.md
+      - FFMPEG:
+        - FFMPEG 错误总结: av/ffmpeg_error.md
   - 工具:
       - 免费工具和网站: tools/free_tools_sites.md
       - 英语各种资料和网站: tools/english_tools.md

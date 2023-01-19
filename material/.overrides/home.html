@@ -30,8 +30,7 @@ This file was automatically generated - do not edit
   }
 
   @media screen and (min-width: 76.25em) {
-    [data-md-color-primary=white]
-    .md-tabs {
+    [data-md-color-primary=white] .md-tabs {
       border-bottom: 0rem;
     }
   }
@@ -43,17 +42,34 @@ This file was automatically generated - do not edit
         <img src="assets/slice.png" alt="" width="800" height="745" draggable="false">
       </div>
       <div class="mdx-hero__content">
-        <h1 style="color: #1C0036;font-size: 2rem;margin-top: 2rem;">VIRTUAL</h1>
-        <h1 style="color: #1C0036;font-size: 3rem;">REALITY</h1>
+        <h1 style="color: #1C0036;font-size: 2rem;margin-top: 2rem;">{{ config.site_desc1 }}</h1>
+        <h1 style="color: #1C0036;font-size: 3rem;">{{ config.site_desc2 }}</h1>
         <p style="color: #9B8FA7;">{{ config.site_description }}</p>
-        <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}"
-          class="md-button md-button--primary" style="
+        <a href="{{ 'vr/' | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary" style="
           border-radius:2rem;
           margin-top: 2rem;
           background-color: #1C0036;
           color: white;
           border: 0px;">
-          Read more
+          VR
+        </a>
+        <a href="{{ 'opengl/' | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary"
+          style="
+        border-radius:2rem;
+        margin-top: 2rem;
+        background-color: #1C0036;
+        color: white;
+        border: 0px;">
+          OpenGL
+        </a>
+        <a href="{{ 'av/' | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary"
+          style="
+      border-radius:2rem;
+      margin-top: 2rem;
+      background-color: #1C0036;
+      color: white;
+      border: 0px;">
+          音视频
         </a>
       </div>
     </div>
