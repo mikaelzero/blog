@@ -39,14 +39,6 @@ GOP 过长的缺点:
 
 将一副图像数据，划分为 n\*n 大小的网格，每个网格称为宏块
 
-## 帧内预测
-
-帧内编码/预测用于解决单帧空间冗余问题。如果我们分析视频的每一帧，会发现许多区域是相互关联的。
-
-![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/08Jqm2.jpg)
-
-## 帧间预测
-
 ## 视频编码后的结果
 
 **I 帧**
@@ -59,20 +51,35 @@ GOP 过长的缺点:
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/rkLnOQ.jpg)
 
-**P 帧**
+**P 帧(预测)**
 
-- P 帧（P Picture、P Frame、Predictive Coded Picture），翻译为：预测编码图像
+P 帧（P Picture、P Frame、Predictive Coded Picture），翻译为：预测编码图像，当前的画面几乎总能使用之前的一帧进行渲染
+
+例如，在第二帧，唯一的改变是球向前移动了。仅仅使用（第二帧）对前一帧的引用和差值，我们就能重建前一帧。
+![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/RYz2uC.jpg) <- ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/wd71H9.jpg)
+
 - 编码：
   - 并不会对整帧图像数据进行编码
   - 以前面的 I 帧或 P 帧作为参考帧，只编码当前 P 帧与参考帧的差异数据
 - 解码：需要先解码出前面的参考帧，再结合差异数据解码出当前 P 帧完整的图像
 
-**B 帧**
+> 既然 P 帧使用较少的数据，为什么我们不能用单个 I 帧和其余的 P 帧来编码整个视频？
+> 编码完这个视频之后，开始观看它，并快进到视频的末尾部分，你会注意到它需要花一些时间才真正跳转到这部分。> 这是因为 P 帧需要一个引用帧（比如 I 帧）才能渲染。
+
+**B 帧（双向预测）**
 
 - 双向预测内插编码帧（bi-directionalinterpolated prediction frame）,保存差异信息的百分比，也称为双向预测帧.
 - 它的解码依赖前面的 I 帧和后面的 P 帧
 - 当帧数据与最近的 I 帧相似程度高于 70%时，编码成 B 帧。
 - 硬编码中部分手机关闭了 B 帧的编码，它编码耗时较长。
+
+## 时间冗余（帧间预测）
+
+## 帧内预测
+
+帧内编码/预测用于解决单帧空间冗余问题。如果我们分析视频的每一帧，会发现许多区域是相互关联的。
+
+![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/08Jqm2.jpg)
 
 ## 简单的编码例子
 
@@ -84,7 +91,18 @@ GOP 过长的缺点:
 - 第四帧由于差异高于 30%，编码成 P 帧，输出到文件，同时通知传输缓冲器，将 B 帧输出到文件。
 - 在每个 GOP 编码结果文件中首帧一定是 I 帧，第二帧一定是 P 帧，所以输出一般都是 IPBBBBB
 
+## 总结
+
+视频编码主要分 为熵编码、预测、DCT 变换和量化这几个步骤。
+
+1. 熵编码(以行程编码为例):视频编码中真正实现“压缩”的步骤，主要去除信息熵冗 余。在出现连续多个 0 像素的时候压缩率会更高。
+2. 帧内预测:为了提高熵编码的压缩率，先将当前编码块的相邻块像素经过帧内预测算法 得到帧内预测块，再用当前编码块减去帧内预测块得到残差块，从而去掉空间冗余。
+3. 帧间预测:类似于帧内预测，在已经编码完成的帧中，先通过运动搜索得到帧间预测 块，再与编码块相减得到残差块，从而去除时间冗余。
+4. DCT 变换和量化:将残差块变换到频域，分离高频和低频信息。由于高频信息数量多但 大小相对较小，又人眼对高频信息相对不敏感，我们利用这个特点，使用 QStep 对 DCT 系数进行量化，将大部分高频信息量化为 0，达到去除视觉冗余的目的。
+
 参考：
+
+https://github.com/leandromoreira/digital_video_introduction/blob/master/README-cn.md
 
 https://bbs.huaweicloud.com/blogs/389073
 
