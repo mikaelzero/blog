@@ -154,6 +154,7 @@ extra_javascript:
 nav:
   - Home: index.md
   - Android:
+      - android/index.md
       - android与unity的纹理: android/android_unity_texture.md
       - Android Sensor Framework: android/android_sensor_framework.md
       - Android系统图解: android/android_system_image.md
@@ -204,16 +205,16 @@ nav:
         - C指针笔记(2): cpp/C_point_note_2.md
         - 关键字: cpp/keywords.md
       - 开源库整理: cpp/github_lib.md
-  - 音视频:
-      - av/index.md
-      - 色彩格式(YUV RGB): av/data_format.md
-      - 音频:
-        - 音频采集到输出: av/audio_input_output.md
-      - 视频:
-        - 视频基础: av/video_outline.md
-        - 视频编码压缩: av/video_codec.md
-      - FFMPEG:
-        - FFMPEG 错误总结: av/ffmpeg_error.md
+  # - 音视频:
+  #     - av/index.md
+  #     - 色彩格式(YUV RGB): av/data_format.md
+  #     - 音频:
+  #       - 音频采集到输出: av/audio_input_output.md
+  #     - 视频:
+  #       - 视频基础: av/video_outline.md
+  #       - 视频编码压缩: av/video_codec.md
+  #     - FFMPEG:
+  #       - FFMPEG 错误总结: av/ffmpeg_error.md
   - 工具:
       - 免费工具和网站: tools/free_tools_sites.md
       - 英语各种资料和网站: tools/english_tools.md
