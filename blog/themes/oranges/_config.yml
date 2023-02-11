@@ -193,11 +193,11 @@ search:
 
 # 深/浅配色切换
 colorSwitch:
-  enable: true
+  enable: false
 
 # 文章分享
 postShare:
-  enable: true
+  enable: false
 
   twitter:
     enable: true
@@ -209,7 +209,7 @@ postShare:
 codeBlock:
   # 代码块风格，默认normal
   # 可选：默认风格'normal'；mac黑色风格：'mac-black'
-  style: 'normal'
+  style: 'mac-black'
   # 代码复制
   copy:
     enable: true
@@ -235,12 +235,12 @@ cdns:
 
   # LaTeX 公式
   mathjax:
-    enable: false
+    enable: true
     url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
 
   # 代码块复制
   clipboard:
-    enable: false
+    enable: true
     url: https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js
 
   # 评论系统
