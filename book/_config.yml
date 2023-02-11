@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: mikaelzero's Blog
+title: Book
 subtitle: ''
 description: ''
 keywords:
@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://blog.mikaelzero.com
-permalink: :title/
+url: http://book.mikaelzero.com
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -97,7 +97,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: oranges
+theme: leedom
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
