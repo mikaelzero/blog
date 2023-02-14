@@ -1,6 +1,6 @@
 ---
 title: Android显示原理
-date: 2022/06/06
+date: 2023/01/02
 tags:
   - android
   - graphic
@@ -190,6 +190,9 @@ private void draw(boolean fullRedrawNeeded) {
             if (!drawSoftware(surface, mAttachInfo, xOffset, yOffset, scalingRequired, dirty)) {
                 return;
             }
+        }
+    }
+}
 ```
 
 硬件加速渲染和软件渲染一样, 在开始渲染之前, 都是要先向 SurfaceFlinger 服务 dequeue 一个 Graphic Buffer. 不过对硬件加速渲染来说, 这个 Graphic Buffer 会被封装成一个 ANativeWindow, 并且传递给 OpenGL 进行硬件加速渲染环境初始化.
