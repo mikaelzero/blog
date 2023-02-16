@@ -89,6 +89,11 @@ navbar:
     enable: true
     path: /tags/
     key: tags
+  -
+    name: RSS
+    enable: true
+    path: /atom.xml
+    key: rss
 
 # 文章目录
 catalog:
