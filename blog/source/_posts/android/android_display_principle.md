@@ -6,7 +6,7 @@ tags:
   - graphic
 ---
 
-> 相关的类的定义和功能可以查看 [Android 显示原理(手册)](https://blog.mikaelzero.com/android/android_display_principle_manual/)
+> 相关的类的定义和功能可以查看 [Android 显示原理(手册)](/android/android_display_principle_manual)
 
 显示流程, 表面意思就是在 android 系统中, 是如何将画面显示在手机上的整体流程.
 
