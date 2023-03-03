@@ -135,28 +135,10 @@ footer:
     #   name: email
     #   icon: envelope
     #   path: 
-    # -
-    #   name: facebook
-    #   icon: facebooksquare
-    #   path:
-    # -
-    #   name: twitter
-    #   icon: twitter
-    #   path:
-    # -
-    #   name: wechat
-    #   icon: wechat
-    #   path:
-    # -
-    #   name: weibo
-    #   icon: weibo
-    #   path:
-    # -
-    #   # rss需安装 hexo-generator-feed 插件
-    #   # 具体参照https://github.com/hexojs/hexo-generator-feed
-    #   name: rss
-    #   icon: rss
-    #   path: /atom.xml
+    -
+      name: rss
+      icon: rss
+      path: /atom.xml
 
   more:
     # 支持变量显示，可自定义扩展，具体见主题/layout/_partial/footer.ejs
@@ -172,21 +154,21 @@ footer:
   # 浏览量统计
   # http://busuanzi.ibruce.info/
   views:
-    enable: false
+    enable: true
     provider: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
     item:
       -
-        enable: true
+        enable: false
         id: busuanzi_value_site_pv
         name: 本站总访问量
         unit: 次
       -
-        enable: true
+        enable: false
         id: busuanzi_value_page_pv
         name: 本文总阅读量
         unit: 次
       -
-        enable: true
+        enable: false
         id: busuanzi_value_site_uv
         name: 本站访客数
         unit: 人
