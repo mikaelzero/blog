@@ -1,5 +1,5 @@
 ---
-title: VR相关技术词汇
+title: VR基础入门-技术词解释
 date: 2023/01/02
 tags:
   - vr
