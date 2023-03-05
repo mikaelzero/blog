@@ -1,6 +1,6 @@
 ---
 title: 禁止安装某些类型的APP
-date: 2022/01/02
+date: 2023/01/02
 tags:
   - android
   - android framework
