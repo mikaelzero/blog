@@ -7,7 +7,7 @@ sidebar:
   widgets:
     #### 自动生成的页面 ####
     # 主页
-    home: search, welcome, recent, timeline # for home
+    home: search, welcome,recent,tagcloud, timeline # for home
     # 博客索引页
     blog_index: search_blog,welcome, recent, timeline # for categories/tags/archives
     # 文档索引页
@@ -34,8 +34,9 @@ search:
 style:
   font-family:
     body: fangzheng_yuan,'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
-  codeblock:
-    highlightjs_theme: https://upyun.thatcdn.cn/public/web/stellar-1.18.5/ZYCode.css
+  # codeblock:
+  #   highlightjs_theme: /custom/css/ZYCode.css
+  darkmode: false # auto / always / false
 
 article:
   auto_cover: true
@@ -48,6 +49,10 @@ footer:
       url: /atom.xml
     - icon: '<img src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/08a41b181ce68.svg"/>'
       url: https://github.com/mikaelzero
+    - icon: '<img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/>'
+      url: javaScript:void('dark');
+    - icon: '<img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/>'
+      url: javaScript:void('light');
   sitemap:
     '博客':
       - '[近期](/)'
