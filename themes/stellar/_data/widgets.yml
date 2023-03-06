@@ -32,7 +32,7 @@ welcome:
   layout: markdown
   title: Hey
   content: |
-    欢迎来到mikaelzero的博客~
+    欢迎来到Eason Moore的博客~
     主要分享一些Android Framework、Vr、OpenGL等相关的文章
 
 # 将其覆盖设置为空，可删除一个默认组件，例如 welcome:

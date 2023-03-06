@@ -1,15 +1,15 @@
 <div class="header">
-  <div class="avatar">
-    <a href="<%- theme.avatar.path %>">
+  <!-- <div class="avatar"> -->
+    <!-- <a href="<%- theme.avatar.path %>"> -->
       <!-- 头像取消懒加载，添加no-lazy -->
-      <% if (config.lazyload && config.lazyload.enable) { %>
-        <img no-lazy src="<%- theme.avatar.author_photo %>" alt="">
-      <% } else { %>
-        <img src="<%- theme.avatar.author_photo %>" alt="">
-      <% } %>
-    </a>
-    <div class="nickname"><a href="<%- theme.avatar.path %>"><%- theme.avatar.author_nickname %></a></div>
-  </div>
+      <!-- <% if (config.lazyload && config.lazyload.enable) { %> -->
+        <!-- <img no-lazy src="<%- theme.avatar.author_photo %>" alt=""> -->
+      <!-- <% } else { %> -->
+        <!-- <img src="<%- theme.avatar.author_photo %>" alt=""> -->
+      <!-- <% } %> -->
+    <!-- </a> -->
+    <!-- <div class="nickname"><a href="<%- theme.avatar.path %>"><%- theme.avatar.author_nickname %></a></div> -->
+  <!-- </div> -->
   <div class="navbar">
     <ul>
       <%
@@ -17,7 +17,8 @@
           if (item.enable) {
       %>
         <li class="nav-item" data-path="<%- item.path %>">
-          <a href="<%- item.path %>"><%- item.name %></a>
+          <a href="<%- item.path %>"><%- item.name %>
+          </a>
         </li>
       <%
           }
