@@ -49,10 +49,6 @@ footer:
       url: /atom.xml
     - icon: '<img src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/08a41b181ce68.svg"/>'
       url: https://github.com/mikaelzero
-    - icon: '<img id="ThemeM" src="https://upyun.thatcdn.cn/public/img/icon/Moon.png"/>'
-      url: javaScript:void('dark');
-    - icon: '<img id="ThemeL" src="https://upyun.thatcdn.cn/public/img/icon/Sun.png"/>'
-      url: javaScript:void('light');
   sitemap:
     '博客':
       - '[近期](/)'
