@@ -81,6 +81,11 @@ a:hover {
   padding: 50px 0;
 }
 
+.container_home {
+  /* width: 50%; */
+  margin: 0 auto;
+}
+
 .container {
   width: 50%;
   margin: 0 auto;
@@ -399,7 +404,7 @@ a:hover {
   font-size: 2.2rem;
   font-weight: 600;
   color: var(--color-text-a);
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .post-details .post-attach {
