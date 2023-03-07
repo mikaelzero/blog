@@ -23,14 +23,14 @@
 
 /* dark scheme */
 :root[color-mode="dark"] {
-  --bg-body: #2E3440;
+  --bg-body: #1c1e21;
   --color-text-base: #C1C2C5;
-  --color-text-a: #C1C2C5;
+  --color-text-a: hsla(0,0%,100%,.65);
   --color-text-a-hover: #FFFFFF;
   --color-text-a-active: #FFFFFF;
   --color-text-sub: #8e8e8e;
   --color-text-md-title: #eceff4;
-  --color-text-md-content: #eceff4;
+  --color-text-md-content: hsla(0,0%,100%,.65);
   --color-text-md-code: #e96900;
   --bg-text-md-code: #3b4252;
   --bg-block-md-quote: #3a4252;
