@@ -124,9 +124,18 @@ deploy:
 
 inject:
   head:
+    - |
+      <script>
+        if (window.localStorage.getItem('ZYI_Theme_Mode')==='dark' || (window.localStorage.getItem('ZYI_Theme_Mode')==='Moss' && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+            document.querySelector("html").id = "ZYDark";
+        }
+      </script>
     - <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+    - <link rel="stylesheet" href="/custom/css/ZYDark.css">
+    - <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css">
   script:
     - <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+    - <script type="text/javascript" src="/custom/js/ZYDark.js"></script>
 
 wiki_dir: wiki

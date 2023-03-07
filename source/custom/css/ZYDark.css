@@ -1,5 +1,5 @@
 #ZYDark:root {
-  --site-bg: #1c1e21;
+  --site-bg: rgb(28 30 33 / 1);
   --card: #373d43;
   --block: #26292c;
   --block-border: #383d42;
@@ -152,4 +152,4 @@
   --waline-info-bgcolor: #272727;
   --waline-info-color: #666;
 }
-   
+    
