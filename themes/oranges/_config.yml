@@ -26,7 +26,7 @@ favicon:
 
 # 用户头像与昵称
 avatar:
-  author_photo: /images/avatar2.png
+  author_photo: /images/avatar.png
   author_nickname: Blogs
   path: /
 
@@ -40,7 +40,7 @@ gtag:
 
 # 文章评论系统
 comments:
-  enable: false
+  enable: true
   # 目前仅支持gitalk, valine, disqus评论，选择喜欢的一种开启即可
 
   gitalk:
@@ -57,9 +57,9 @@ comments:
   valine:
     # https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
     # 进入以上网址查看官方教程
-    enable: false
-    appId:
-    appKey:
+    enable: true
+    appId: TpUXFjhKAwIrBMmdV7xfHYDZ-gzGzoHsz
+    appKey: r7JkprREW7fGVrYLZhDGR5Pn
     placeholder: Welcome!
     avatar: retro
     vempty_display: false
@@ -85,10 +85,20 @@ navbar:
     path: /
     key: home
   -
+    name: Archives
+    enable: true
+    path: /archives/
+    key: archives
+  -
     name: Tags
     enable: true
     path: /tags/
     key: tags
+  -
+    name: About
+    enable: true
+    path: /about/
+    key: about
   -
     name: RSS
     enable: true
@@ -101,7 +111,7 @@ catalog:
 
 # 文章末尾的上一页与下一页
 prevnext:
-  enable: true
+  enable: false
 
 # 友链详细信息：支持多个友链
 friends:
@@ -131,10 +141,6 @@ footer:
       name: github
       icon: github
       path: https://github.com/mikaelzero
-    # -
-    #   name: email
-    #   icon: envelope
-    #   path: 
     -
       name: rss
       icon: rss
@@ -144,9 +150,6 @@ footer:
     # 支持变量显示，可自定义扩展，具体见主题/layout/_partial/footer.ejs
     # 一般用来显示根据各种场景需要切换的文本，如时间年份
     # 如：{thisYear} 会被替换为今年年份
-    -
-      name: Copyright © {thisYear} Oranges
-      path: https://github.com/zchengsite/hexo-theme-oranges
     -
       name: Theme by Oranges | Powered by Hexo
       path: https://github.com/zchengsite/hexo-theme-oranges
@@ -176,11 +179,13 @@ footer:
 # 文章搜索
 search:
   enable: true
-  placeholder: 
+  path: search.xml
+  field: post
+  content: true
 
 # 深/浅配色切换
 colorSwitch:
-  enable: false
+  enable: true
 
 # 文章分享
 postShare:

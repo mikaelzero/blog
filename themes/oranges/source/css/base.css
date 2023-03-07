@@ -1,3 +1,9 @@
+
+@font-face {
+  font-family: 'FZY Font';
+  src: url('../font/fangzheng_yuan.ttf');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +14,7 @@ html, body {
   letter-spacing: 0.01rem;
   background-color: var(--bg-body);
   transition: color 400ms ease-in-out 0s, background-color 400ms ease-in-out 0s;
-  font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif
+  font-family: 'FZY Font', system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif
 }
 
 body.hidden {
@@ -79,11 +85,6 @@ a:hover {
 
 .header {
   padding: 50px 0;
-}
-
-.container_home {
-  /* width: 50%; */
-  margin: 0 auto;
 }
 
 .container {
@@ -222,9 +223,10 @@ a:hover {
 }
 
 .avatar img {
-  height: 100px;
+
+  /* height: 100px; */
   width: 100px;
-  
+  border-radius: 8%;
 }
 
 .avatar .nickname {
@@ -257,7 +259,7 @@ a:hover {
   position: relative;
   display: inline-block;
   margin: 0 15px;
-  font-size: 2.0rem;
+  font-size: 1.65rem;
   font-weight: bold;
   text-align: center;
 }
@@ -404,7 +406,7 @@ a:hover {
   font-size: 2.2rem;
   font-weight: 600;
   color: var(--color-text-a);
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .post-details .post-attach {
