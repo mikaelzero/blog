@@ -3,7 +3,7 @@ title: 禁止安装某些类型的APP
 date: 2023/01/02
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 PMS 是最终负责安装的地方，入口是 `installStage`

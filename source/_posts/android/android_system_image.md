@@ -3,7 +3,7 @@ title: Android系统图解
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 ### 系统启动过程

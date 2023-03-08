@@ -3,7 +3,7 @@ title: SurfaceFlinger的主动刷新
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
   - SurfaceFlinger
 ---
 

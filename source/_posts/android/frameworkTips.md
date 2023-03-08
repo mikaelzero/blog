@@ -3,7 +3,7 @@ title: framework修改记录
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 #### 获取方法调用路径

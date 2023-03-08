@@ -3,7 +3,7 @@ title: 禁止下拉状态栏
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 上锁屏界面状态栏要禁止下拉请按如下方案修改：

@@ -3,7 +3,7 @@ title: AndroidStudio配置系统签名
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 ## 准备工作

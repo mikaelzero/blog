@@ -3,7 +3,7 @@ title: 单独编译framework
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 ```bash

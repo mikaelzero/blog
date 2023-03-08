@@ -3,7 +3,7 @@ title: Android 原生通知推送兼容 8.0
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 Android 8.0 通知需要设置通知渠道才能正常显示, 步骤如下：
