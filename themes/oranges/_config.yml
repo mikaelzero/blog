@@ -27,7 +27,7 @@ favicon:
 # 用户头像与昵称
 avatar:
   author_photo: /images/avatar.png
-  author_nickname: Blogs
+  author_nickname: Eason Moore
   path: /
 
 # Google 分析
@@ -80,7 +80,7 @@ comments:
 # 主题页面导航栏
 navbar:
   -
-    name: Blogs
+    name: Homes
     enable: true
     path: /
     key: home
