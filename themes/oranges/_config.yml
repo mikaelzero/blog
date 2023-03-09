@@ -111,7 +111,7 @@ catalog:
 
 # 文章末尾的上一页与下一页
 prevnext:
-  enable: false
+  enable: true
 
 # 友链详细信息：支持多个友链
 friends:

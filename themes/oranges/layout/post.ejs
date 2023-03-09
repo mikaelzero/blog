@@ -12,8 +12,9 @@
 <% if (page.type === "tags") { %>
   <!-- 标签页 url形式：https://yoursite/tags/ -->
   <div class="container tag-index">
-    <div>
-      <%- list_tags({ class: "tag" }) %>
+      <!-- <%- list_tags({ class: "tag",orderby: 'length', order: 'desc'}) %> -->
+      <div class="tag-cloud">
+        <%- tagcloud({class: "tag",min_font: 18, max_font: 30,show_count:'true',count_class:'tag-list-count'}) %>  
     </div>
   </div>
   <% } %>
@@ -115,7 +116,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="<%= __('updateTime') %>"></i>
-              <%- page.date.format("YYYY-MM-DD HH:mm:ss") %>
+              <%- page.date.format("YYYY-MM-DD") %>
             </span>
             <% for(item of theme.navbar) {
               if (item.key === 'tags' && item.enable) {

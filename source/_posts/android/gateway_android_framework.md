@@ -28,6 +28,8 @@ m aidegen
 aidegen-dev -n frameworks
 ```
 
+> 如果想打开其他文件夹，frameworks 替换为其他目录，应该也是可以的
+
 用 Gateway 打开 frameworks 目录，注意不是根目录而是要 frameworks 目录
 
 > 注意提示的 `JDK "JDK18" is missing` 不要去配置
