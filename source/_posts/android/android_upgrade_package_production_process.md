@@ -3,7 +3,7 @@ title: androidO升级包制作流程
 date: 2022/06/06
 tags:
   - android
-  - android framework
+  - framework
 ---
 
 ## a/b 系统升级包制作和流程解析
