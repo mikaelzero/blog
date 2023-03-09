@@ -13,3 +13,21 @@ tags:
 可以使用 Jetbrains 的 ToolBox 来下载「Gateway」
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/WJ142e.png)
+
+在服务器上使用 Aidegen
+
+首先进入 android 根目录
+
+```bash
+m aidegen
+```
+
+生成 framework 的 idea 工程文件
+
+```bash
+aidegen-dev -n frameworks
+```
+
+用 Gateway 打开 frameworks 目录，注意不是根目录而是要 frameworks 目录
+
+> 注意提示的 `JDK "JDK18" is missing` 不要去配置
