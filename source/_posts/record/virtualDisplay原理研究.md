@@ -1,5 +1,6 @@
 ---
 title: virtualDisplay原理研究
+urlname: principle_virtualDisplay
 date: 2022/11/11
 tags:
   - virtualDisplay

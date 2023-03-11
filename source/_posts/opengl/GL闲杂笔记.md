@@ -1,5 +1,6 @@
 ---
 title: GL闲杂笔记
+urlname: gl_notes
 date: 2022/10/06
 tags:
   - opengl

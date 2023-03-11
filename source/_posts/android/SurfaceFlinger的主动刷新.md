@@ -1,5 +1,6 @@
 ---
 title: SurfaceFlinger的主动刷新
+urlname: active_refresh_of_surfaceflinger
 date: 2022/06/06
 tags:
   - android

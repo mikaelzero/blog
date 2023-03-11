@@ -1,5 +1,6 @@
 ---
 title: (译)移动VR开发时要避免的PC渲染技术
+urlname: pc_rendering_avoid_when_developing_for_mobile_vr
 date: 2022/12/11
 tags:
   - vr

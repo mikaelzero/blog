@@ -1,5 +1,6 @@
 ---
 title: 单独编译framework
+urlname: make_framework
 date: 2022/06/06
 tags:
   - android

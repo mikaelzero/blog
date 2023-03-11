@@ -1,5 +1,6 @@
 ---
 title: framework修改记录
+urlname: framework_modify_record
 date: 2023/03/07
 tags:
   - android

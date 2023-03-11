@@ -1,5 +1,6 @@
 ---
 title: SingleBuffer与Surfaceflinger
+urlname: singlebuffer_surfaceflinger
 date: 2023/02/20
 tags:
   - vr

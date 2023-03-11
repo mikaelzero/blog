@@ -1,5 +1,6 @@
 ---
 title: singlebuffer和vsync的关系
+urlname: between_singlebuffer_vsync
 date: 2022/11/11
 tags:
   - SurfaceFlinger

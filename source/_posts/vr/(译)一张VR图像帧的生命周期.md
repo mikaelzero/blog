@@ -1,5 +1,6 @@
 ---
 title: (译)一张VR图像帧的生命周期
+urlname: a_vr_frame_life
 date: 2022/12/11
 tags:
   - vr

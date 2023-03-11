@@ -1,5 +1,6 @@
 ---
 title: 使用「Gateway」IDE来开发Android Framework
+urlname: gateway_android_framework
 date: 2023/03/07
 tags:
   - android

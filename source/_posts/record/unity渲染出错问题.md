@@ -1,5 +1,6 @@
 ---
 title: unity渲染出错问题
+urlname: unity_render_error
 date: 2022/11/11
 tags:
   - SurfaceFlinger
