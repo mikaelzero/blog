@@ -65,7 +65,9 @@ Android 系统还提供了一个 InputMethodManager(IMM) 类来管理输入法�
 
 ## 自动启动输入法
 
-当点击了输入框之后，调用链是这样的：
+第一种是，用户启动一个新的 Activity 时，或者退出当前 Activity,或者关闭一个系统窗口时，等等，都会导致 WmS 进行窗口切 换，— 旦切换完成，就有一个新的窗口成为交互窗口。此时 WmS 通过 IPC 回调，通知客户端相应的客户端“发生了焦点窗口改变” onWindowFocusChanged()，一旦客户窗口获得该消息后，就开始启动输入法的过程。
+
+第二种是用户主动操作，当点击了输入框之后，调用链是这样的：
 
 ```java
 android.view.inputmethod.InputMethodManager.focusIn:1794
@@ -133,7 +135,7 @@ InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入�
 
 该函数中会先检查 served 视图是否变化。比如，如果用户在同一个 TextView 上连续点击时 ，也会执行到 checkFocus()函 数 ，但是由于视图没变化，因此该函数会立即返回 ， 检查的条件是对比 mServedView 和 mNextServedView。当第一次调用 checkFocus()函数时，这两个变量值不相同，而执行后，mServedView 被赋值为 mNextServedView.
 
-当客户端要显示输入法窗口时，会调用 IMM 的 showSoftInput()函数，该函数中则会调用 IMMS 的 同名函数。在 IMMS 中釆用的是异步机制，即先发送一个 MSG—SHOW_SOFT_INPUT 的消息，发送消 息时，调用了 IMMS 的内部函数 executeOrSendMessage()，该函数的参数使用 mCaller.obtainMessageIOO() 函数进行创建。mCaller 是一个 HandlerCaller 类。接下来就会执行到当前 IMS 中的同名函数 showSoftInput()中
+当客户端要显示输入法窗口时，会调用 IMM 的 showSoftInput()函数，该函数中则会调用 IMMS 的 同名函数。在 IMMS 中釆用的是异步机制，即先发送一个 MSG_SHOW_SOFT_INPUT 的消息，发送消 息时，调用了 IMMS 的内部函数 executeOrSendMessage()，该函数的参数使用 mCaller.obtainMessageIOO() 函数进行创建。mCaller 是一个 HandlerCaller 类。接下来就会执行到当前 IMS 中的同名函数 showSoftInput()中
 
 ### getDisplayContentOrCreate
 
@@ -173,14 +175,32 @@ getDisplayContentOrCreate 中的逻辑是这样的：
     }
 ```
 
-这个函数的作用就是确定view要显示在哪个屏幕上。
+这个函数的作用就是确定 view 要显示在哪个屏幕上。
 
-在 startlnputlnner 中主要做了三件事：
+那么这个 token 从何而来？
 
-1. 在 IMSS 中调用 bindService()，启动 IMS 中包含了 InputMethodService 对象。
-2. 在 IMMS 的 onServiceConnected()回调中，调用 IMS 的 createSession()方法要求 IMS 创建一 个 SessionBinder 对象，随后 IMMS 会把这个 Binder 对象传递到客户进程中的 IMM 对象中。
-3. 在 IM M S 中调用 attachNewInputLocked()。正如该函数名称所示，这是一个新的 Input 对象， 即一个新的编辑框。因为每个不同的编辑框都有各自不同的 InputConnection Binder 对象，因此，每次当用户从一个编辑框切换到另一个编辑框时，都需要把新的 Binder 对象传递到输入法中，在该函数的 参数中包含了新的编辑框对应的 Binder 对象 mCurlnputConext。
+## token
 
-在 IMMS 的 ServiceConnection 接口函数 onServiceConnected()实现中，会发送一个 MSG—ATTACH_TOKEN 的消息，该消息的作用是告知输入法服务该输入法窗口在 WmS 对应的 token 对象，因为这个 token 是在 IMMS 中创建的，名称为 mCurToken
+**启动输入法是在客户窗口变成当前交互窗口时开始执行的**，所以当我们启动一个 app 到虚拟屏时，就会启动输入法。这里说的启动仅仅是启动输入法服务，即 IMS，并非会显示输入法窗口。
 
-如果是输入法窗口 ， 则 attr.token必须存在，并且其类型必须是 INPUT_METHOD，对于应用程序而言，没有权限创建输入法窗口，该窗口是在 IMMS中创建的，创建之前，它会先创建一个 WindowToken对象
+如果是输入法窗口 ， 则 attr.token 必须存在，并且其类型必须是 INPUT_METHOD，对于应用程序而言，没有权限创建输入法窗口，该窗口是在 IMMS 中创建的，创建之前，它会先创建一个 WindowToken 对象，创建的链路如下：
+
+1. IMMS::startInputUncheckedLocked
+2. IMMS::bindCurrentInputMethodServiceLocked
+3. IMMS::mIWindowManager.addWindowToken
+4. IMMS::onServiceConnected
+5. start IMS
+
+可以看到，WindowToken 是在上面的第三个步骤添加的，并且和 DisplayContent 进行了绑定。
+
+而这里的创建的 WindowToken 和 getDisplayContentOrCreate 中的参数 token 就是同一个。在 addWindowToken 的流程中，会根据传递的 DisplayId 来创建对应的 WindowToken。
+
+但是发现，当我在虚拟屏上起 App 时，addWindowToken 的 DisplayId 总是为 0，也就是默认屏幕。addWindowToken 的 DisplayId 参数来源是 IMMS 中的 computeImeDisplayIdForTarget，用来找哪个屏幕应该显示输入法。
+
+总结一下，首先在 WMS 中会通过 getDisplayContentOrCreate 来找到 DisplayContent，DisplayContent 代表了哪一个屏幕，后续获取 WindowToken、创建 WIndowState 以及 addWindow 等操作都是基于这个 DisplayContent,所以，包括一开始在 addView 中修改的代码都可以删除，只需要在 computeImeDisplayIdForTarget 中返回自己创建的虚拟屏 ID 即可。
+
+## 窗口大小
+
+显示之后，会出现大小不对应的情况，如下图：
+
+![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/1679041574968_DWGdrz.png)
