@@ -1,5 +1,5 @@
 ---
-title: 输入法原理分析
+title: VR系统中将输入法显示到VirtualDisplay
 urlname: principle-analysis-of-input-method
 date: 2023/03/08
 tags:
@@ -9,12 +9,11 @@ tags:
   - IMS
   - 输入法
   - 软键盘
-password: hello111111
 ---
 
 ## 需求场景
 
-因为我们的应用是显示在虚拟屏上，所以当虚拟屏的输入框点击之后，输入法窗口会显示到主屏幕上，但是我们需要将它显示到另外一个虚拟屏上。
+VR 系统中，Unity 中存在一个面板，需要将系统的 2D 输入法页面显示到这个 3D 面板中，这个面板是一个虚拟屏。
 
 首先，先大致了解一下输入法的流程和术语。
 
@@ -42,24 +41,7 @@ Android 系统还提供了一个 InputMethodManager(IMM) 类来管理输入法�
 
 现在 WindowManager 类中添加一个字段`softWindowDisplayId`
 
-然后 WindowManagerImpl 代码修改如下：
-
-```java
-    @Override
-    public void addView(@NonNull View view, @NonNull ViewGroup.LayoutParams params) {
-        applyDefaultToken(params);
-         boolean isWindow = params instanceof LayoutParams;
-        int softWindowDisplayId = isWindow?((LayoutParams)params).softWindowDisplayId:Display.DEFAULT_DISPLAY;
-        Display display;
-        if(softWindowDisplayId!=0){
-            DisplayManager displayManager = (DisplayManager) mContext.getSystemService(Context.DISPLAY_SERVICE);
-             display = displayManager.getDisplay(softWindowDisplayId);
-        }else{
-            display = mContext.getDisplay();
-        }
-        mGlobal.addView(view, params, display, mParentWindow);
-    }
-```
+然后 WindowManagerImpl 代码修改(因为这里的思路是错误的，所以不贴代码，制作思考记录)。
 
 之后在 Dialog 中也创建一个 DisplayId，在 show 方法中 addView 时候传递
 
@@ -204,3 +186,50 @@ getDisplayContentOrCreate 中的逻辑是这样的：
 显示之后，会出现大小不对应的情况，如下图：
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/1679041574968_DWGdrz.png)
+
+首先贴出在 Unity 端的代码:
+
+```c#
+    void Start()
+    {
+        textureId = nativeUnityHolder.Call<int>("showSoft", 1920, 1080, "soft");
+        texture = Texture2D.CreateExternalTexture(1920, 1080, TextureFormat.RGBA32, false, false, (IntPtr)textureId);
+        texture.wrapMode = TextureWrapMode.Clamp;
+        texture.filterMode = FilterMode.Bilinear;
+        GetComponent<MeshRenderer>().material.shader = Shader.Find("Android");
+    }
+```
+
+这段代码的意思就是创建了一个宽高为 1920\*1080 的 texture 来接收 Android 给过来的画面数据，看起来毫无破绽。
+
+其实问题就在这个 1920\*1080。
+
+首先，一开始考虑出现这个情况，原因大概率就是键盘 View 的大小并不是跟着父布局或者是给定的大小来的。
+
+在系统的 KeyboardView 的 onMeasure 中
+
+```java
+    @Override
+    protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
+        final Keyboard keyboard = getKeyboard();
+        if (keyboard == null) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            return;
+        }
+        // The main keyboard expands to the entire this {@link KeyboardView}.
+        final int width = keyboard.mOccupiedWidth + getPaddingLeft() + getPaddingRight();
+        final int height = keyboard.mOccupiedHeight + getPaddingTop() + getPaddingBottom();
+        setMeasuredDimension(width, height);
+    }
+```
+
+mOccupiedWidth 就是键盘的整个宽度,mOccupiedWidth 的值,默认是这样获取的:
+
+```java
+    public static int getDefaultKeyboardWidth(final Resources res) {
+        final DisplayMetrics dm = res.getDisplayMetrics();
+        return dm.widthPixels;
+    }
+```
+
+可以看到是通过 Resources 来获取到 DisplayMetrics 的宽度.

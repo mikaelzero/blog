@@ -426,6 +426,7 @@ a:hover {
   flex-wrap: wrap;
 }
 
+
 .post-content {
   padding-bottom: 1rem;
 }
@@ -458,6 +459,16 @@ a:hover {
   display: flex;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  .post-details .post-attach {
+    display: none;
+  }
+  .prev-or-next .post-attach {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
   .time-m-d {
