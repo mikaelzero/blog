@@ -232,4 +232,8 @@ mOccupiedWidth 就是键盘的整个宽度,mOccupiedWidth 的值,默认是这样
     }
 ```
 
-可以看到是通过 Resources 来获取到 DisplayMetrics 的宽度.
+可以看到是通过 Resources 来获取到 DisplayMetrics 的宽度.但是我们的设备分辨率是远远超过 1920\*1080 的.
+
+本来想的是,在创建虚拟屏时和创建 IMS 服务时修改 Context 对应的 DisplayId,但是这种改法改动太大,所以还是将 1920\*1080 改成适合自己设备的分辨率是最合适的改法.
+
+还有一个注意点的是，放在虚拟屏上的输入法，一般不显示提取区，所以还要在全屏模式的判断改下逻辑，在 IMS 的 onEvaluateFullscreenMode 中直接返回 false，也就是禁用全屏模式的逻辑。
