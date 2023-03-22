@@ -1,7 +1,7 @@
 ---
-title: VR系统中将输入法显示到VirtualDisplay
+title: VR系统中将2D输入法显示到VirtualDisplay
 urlname: principle-analysis-of-input-method
-date: 2023/03/08
+date: 2023/03/21
 tags:
   - android
   - framework
@@ -47,7 +47,7 @@ Android 系统还提供了一个 InputMethodManager(IMM) 类来管理输入法�
 
 ## 自动启动输入法
 
-第一种是，用户启动一个新的 Activity 时，或者退出当前 Activity,或者关闭一个系统窗口时，等等，都会导致 WmS 进行窗口切 换，— 旦切换完成，就有一个新的窗口成为交互窗口。此时 WmS 通过 IPC 回调，通知客户端相应的客户端“发生了焦点窗口改变” onWindowFocusChanged()，一旦客户窗口获得该消息后，就开始启动输入法的过程。
+第一种是，用户启动一个新的 Activity 时，或者退出当前 Activity,或者关闭一个系统窗口时，等等，都会导致 WmS 进行窗口切 换，— 旦切换完成，就有一个新的窗口成为交互窗口。此时 WmS 通过 IPC 回调，通知客户端相应的客户端“发生了焦点窗口改变” `onWindowFocusChanged()`，一旦客户窗口获得该消息后，就开始启动输入法的过程。
 
 第二种是用户主动操作，当点击了输入框之后，调用链是这样的：
 
@@ -69,7 +69,7 @@ com.android.internal.policy.DecorView.superDispatchTouchEvent:466
 com.android.internal.policy.PhoneWindow.superDispatchTouchEvent:1849
 ```
 
-在 TextView.onTouchEvent 中会先调用 super.onTouchEvent(event)，也就是会调用上面的调用链。之后会判断`touchIsFinished`，如果为 true，那么就会调用 viewClicked，走下面的调用链:
+在 TextView.onTouchEvent 中会先调用 `super.onTouchEvent(event)`，也就是会调用上面的调用链。之后会判断`touchIsFinished`，如果为 true，那么就会调用 viewClicked，走下面的调用链:
 
 ```java
 android.view.inputmethod.InputMethodManager.viewClicked:2145
@@ -85,7 +85,7 @@ android.widget.TextView.onTouchEvent:10915
 调用 IMM 的进程是哪个？如何确定的？
 官方给的注释是
 
-> 正如在 Bug 118341760 中所证明的那样，view.getViewRootImpl().getDisplayId()应该更可靠地确定给定视图正在与哪个显示器交互，而不是 view.getContext().getDisplayId()和 view.getContext().getSystemService()，这些方法可以很容易地被应用程序开发人员（或库作者）弄乱，通过创建不一致的 ContextWrapper 对象，重新分派这些方法到其他上下文，例如 ApplicationContext。
+> 正如在 Bug 118341760 中所证明的那样，`view.getViewRootImpl().getDisplayId()`应该更可靠地确定给定视图正在与哪个显示器交互，而不是 `view.getContext().getDisplayId()`和 `view.getContext().getSystemService()`，这些方法可以很容易地被应用程序开发人员（或库作者）弄乱，通过创建不一致的 ContextWrapper 对象，重新分派这些方法到其他上下文，例如 ApplicationContext。
 
 修改记录：
 
@@ -113,11 +113,11 @@ IMM 中的 DisplayId 是在创建 IMM 对象时赋值的，他的调用链一般
 
 > 由于之前在 addView 中修改的代码有误，导致我误认为 DIsplayId 会不一致而出现问题。其实在 addView 时，通过 mContext 获取的 DisplayId 和 IMM 中的 DisplayId 是一致的，都是虚拟屏的 DisplayId，由于这段分析我觉得需要了解所以进行了保留。
 
-InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入框)赋值给 mNextServedView，另一个是判断 ViewRoot 中是否有 CHECK_FOCUS 消息，如果没有则发送一个，这会异步调用 InputMethodManager::checkFocus()函数
+InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入框)赋值给 mNextServedView，另一个是判断 ViewRoot 中是否有 CHECK_FOCUS 消息，如果没有则发送一个，这会异步调用 `InputMethodManager::checkFocus()` 函数
 
 该函数中会先检查 served 视图是否变化。比如，如果用户在同一个 TextView 上连续点击时 ，也会执行到 checkFocus()函 数 ，但是由于视图没变化，因此该函数会立即返回 ， 检查的条件是对比 mServedView 和 mNextServedView。当第一次调用 checkFocus()函数时，这两个变量值不相同，而执行后，mServedView 被赋值为 mNextServedView.
 
-当客户端要显示输入法窗口时，会调用 IMM 的 showSoftInput()函数，该函数中则会调用 IMMS 的 同名函数。在 IMMS 中釆用的是异步机制，即先发送一个 MSG_SHOW_SOFT_INPUT 的消息，发送消 息时，调用了 IMMS 的内部函数 executeOrSendMessage()，该函数的参数使用 mCaller.obtainMessageIOO() 函数进行创建。mCaller 是一个 HandlerCaller 类。接下来就会执行到当前 IMS 中的同名函数 showSoftInput()中
+当客户端要显示输入法窗口时，会调用 IMM 的 `showSoftInput()` 函数，该函数中则会调用 IMMS 的 同名函数。在 IMMS 中釆用的是异步机制，即先发送一个 MSG_SHOW_SOFT_INPUT 的消息，发送消 息时，调用了 IMMS 的内部函数 executeOrSendMessage()，该函数的参数使用 mCaller.`obtainMessageIOO()` 函数进行创建。mCaller 是一个 HandlerCaller 类。接下来就会执行到当前 IMS 中的同名函数 `showSoftInput()` 中
 
 ### getDisplayContentOrCreate
 
@@ -134,7 +134,7 @@ InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入�
     }
 ```
 
-这个 DisplayContent 是在 WMS 的 addWindow 时，通过 getDisplayContentOrCreate 获取
+这个 DisplayContent 是在 WMS 的 addWindow 时，通过 `getDisplayContentOrCreate` 获取
 
 getDisplayContentOrCreate 中的逻辑是这样的：
 
@@ -177,13 +177,13 @@ getDisplayContentOrCreate 中的逻辑是这样的：
 
 而这里的创建的 WindowToken 和 getDisplayContentOrCreate 中的参数 token 就是同一个。在 addWindowToken 的流程中，会根据传递的 DisplayId 来创建对应的 WindowToken。
 
-但是发现，当我在虚拟屏上起 App 时，addWindowToken 的 DisplayId 总是为 0，也就是默认屏幕。addWindowToken 的 DisplayId 参数来源是 IMMS 中的 computeImeDisplayIdForTarget，用来找哪个屏幕应该显示输入法。
+但是发现，当我在虚拟屏上起 App 时，`addWindowToken` 的 DisplayId 总是为 0，也就是默认屏幕。addWindowToken 的 DisplayId 参数来源是 IMMS 中的 `computeImeDisplayIdForTarget`，用来找哪个屏幕应该显示输入法。
 
-总结一下，首先在 WMS 中会通过 getDisplayContentOrCreate 来找到 DisplayContent，DisplayContent 代表了哪一个屏幕，后续获取 WindowToken、创建 WIndowState 以及 addWindow 等操作都是基于这个 DisplayContent,所以，包括一开始在 addView 中修改的代码都可以删除，只需要在 computeImeDisplayIdForTarget 中返回自己创建的虚拟屏 ID 即可。
+总结一下，首先在 WMS 中会通过 `getDisplayContentOrCreate` 来找到 DisplayContent，DisplayContent 代表了哪一个屏幕，后续获取 WindowToken、创建 WIndowState 以及 addWindow 等操作都是基于这个 DisplayContent,所以，包括一开始在 addView 中修改的代码都可以删除，只需要在 `computeImeDisplayIdForTarget` 中返回自己创建的虚拟屏 ID 即可。
 
 ## 窗口大小
 
-显示之后，会出现大小不对应的情况，如下图：
+显示之后，会出现大小不对应的情况，也就是只显示了一部分，如下图：
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/1679041574968_DWGdrz.png)
 
@@ -237,3 +237,5 @@ mOccupiedWidth 就是键盘的整个宽度,mOccupiedWidth 的值,默认是这样
 本来想的是,在创建虚拟屏时和创建 IMS 服务时修改 Context 对应的 DisplayId,但是这种改法改动太大,所以还是将 1920\*1080 改成适合自己设备的分辨率是最合适的改法.
 
 还有一个注意点的是，放在虚拟屏上的输入法，一般不显示提取区，所以还要在全屏模式的判断改下逻辑，在 IMS 的 onEvaluateFullscreenMode 中直接返回 false，也就是禁用全屏模式的逻辑。
+
+另外还需注意，在函数 computeImeDisplayIdForTarget 中，应该还需要通过 AIDL 来传递 DisplayId。

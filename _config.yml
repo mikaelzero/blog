@@ -9,9 +9,7 @@ description: ''
 keywords:
 author: MikaelZero
 # 多语言
-language:
-  - zh-CN
-  - en
+language: zh-CN
 timezone: ''
 
 # URL
