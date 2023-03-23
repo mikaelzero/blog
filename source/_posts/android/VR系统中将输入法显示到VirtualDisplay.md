@@ -81,9 +81,7 @@ android.widget.TextView.onTouchEvent:10915
 
 ## getFallbackInputMethodManagerIfNecessary
 
-会验证当前的 display 和要显示的 display 他们的 ID 是否相同，（需要验证是否为系统创建？安全性？）
-调用 IMM 的进程是哪个？如何确定的？
-官方给的注释是
+会验证当前的 display 和要显示的 display 他们的 ID 是否相同，官方给的注释是
 
 > 正如在 Bug 118341760 中所证明的那样，`view.getViewRootImpl().getDisplayId()`应该更可靠地确定给定视图正在与哪个显示器交互，而不是 `view.getContext().getDisplayId()`和 `view.getContext().getSystemService()`，这些方法可以很容易地被应用程序开发人员（或库作者）弄乱，通过创建不一致的 ContextWrapper 对象，重新分派这些方法到其他上下文，例如 ApplicationContext。
 
@@ -111,9 +109,9 @@ IMM 中的 DisplayId 是在创建 IMM 对象时赋值的，他的调用链一般
 
 在第一个 addView 时创建 ViewRootImpl 传入了一个 display，这个 display 同样也是通过 mContext.getDisplay()获取的。
 
-> 由于之前在 addView 中修改的代码有误，导致我误认为 DIsplayId 会不一致而出现问题。其实在 addView 时，通过 mContext 获取的 DisplayId 和 IMM 中的 DisplayId 是一致的，都是虚拟屏的 DisplayId，由于这段分析我觉得需要了解所以进行了保留。
+> 由于之前在 addView 中修改的代码有误，导致我误认为 DisplayId 会不一致而出现问题。其实在 addView 时，通过 mContext 获取的 DisplayId 和 IMM 中的 DisplayId 是一致的，都是虚拟屏的 DisplayId，由于这段分析我觉得需要了解所以进行了保留。
 
-InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入框)赋值给 mNextServedView，另一个是判断 ViewRoot 中是否有 CHECK_FOCUS 消息，如果没有则发送一个，这会异步调用 `InputMethodManager::checkFocus()` 函数
+InputMethodManager 的 focusIn 中，会将传递过来的 view(也就是输入框)赋值给 mNextServedView，另一个是判断 ViewRootImpl 中是否有 CHECK_FOCUS 消息，如果没有则发送一个，这会异步调用 `InputMethodManager::checkFocus()` 函数
 
 该函数中会先检查 served 视图是否变化。比如，如果用户在同一个 TextView 上连续点击时 ，也会执行到 checkFocus()函 数 ，但是由于视图没变化，因此该函数会立即返回 ， 检查的条件是对比 mServedView 和 mNextServedView。当第一次调用 checkFocus()函数时，这两个变量值不相同，而执行后，mServedView 被赋值为 mNextServedView.
 
@@ -177,7 +175,7 @@ getDisplayContentOrCreate 中的逻辑是这样的：
 
 而这里的创建的 WindowToken 和 getDisplayContentOrCreate 中的参数 token 就是同一个。在 addWindowToken 的流程中，会根据传递的 DisplayId 来创建对应的 WindowToken。
 
-但是发现，当我在虚拟屏上起 App 时，`addWindowToken` 的 DisplayId 总是为 0，也就是默认屏幕。addWindowToken 的 DisplayId 参数来源是 IMMS 中的 `computeImeDisplayIdForTarget`，用来找哪个屏幕应该显示输入法。
+但是发现，当我在虚拟屏上起 App 时，`addWindowToken` 的 DisplayId 总是为 0，也就是默认屏幕。研究后发现，addWindowToken 的 DisplayId 参数来源是 IMMS 中的 `computeImeDisplayIdForTarget`，作用是用来找哪个屏幕应该显示输入法。
 
 总结一下，首先在 WMS 中会通过 `getDisplayContentOrCreate` 来找到 DisplayContent，DisplayContent 代表了哪一个屏幕，后续获取 WindowToken、创建 WIndowState 以及 addWindow 等操作都是基于这个 DisplayContent,所以，包括一开始在 addView 中修改的代码都可以删除，只需要在 `computeImeDisplayIdForTarget` 中返回自己创建的虚拟屏 ID 即可。
 
