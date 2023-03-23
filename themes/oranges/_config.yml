@@ -28,7 +28,7 @@ favicon:
 avatar:
   author_photo: /images/avatar.png
   author_nickname: MikaelZero
-  path: /
+  path: /archives/
 
 # Google 分析
 # https://analytics.google.com
@@ -82,28 +82,28 @@ navbar:
   -
     name: 主页
     enable: true
-    path: /
-    key: home
-  -
-    name: 归档
-    enable: true
     path: /archives/
-    key: archives
+    key: home
+  # -
+  #   name: 归档
+  #   enable: true
+  #   path: /archives/
+  #   key: archives
   -
     name: 标签
     enable: true
     path: /tags/
     key: tags
-  -
-    name: 关于
-    enable: true
-    path: /about/
-    key: about
-  -
-    name: RSS
-    enable: true
-    path: /atom.xml
-    key: rss
+  # -
+  #   name: 关于
+  #   enable: true
+  #   path: /about/
+  #   key: about
+  # -
+  #   name: RSS
+  #   enable: true
+  #   path: /atom.xml
+  #   key: rss
 
 # 文章目录
 catalog:
