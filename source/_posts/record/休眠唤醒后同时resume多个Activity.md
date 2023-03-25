@@ -35,4 +35,4 @@ if (r != null && !r.finishing) {
 
 这里的 r 就是 Launcher。
 
-删除了 Layer 逻辑正常，说明 WMS 部分在现实 Launcher 时窗口时不正确，导致 SurfaceView 部分的 layer 不显示。
+删除了 Layer 逻辑正常，说明 WMS 部分在显示 Launcher 时窗口时不正确，导致 SurfaceView 部分的 layer 不显示。
