@@ -1577,12 +1577,13 @@
     "hexo-util" "^2.1.0"
     "nunjucks" "^3.0.0"
 
-"hexo-generator-index@^3.0.0":
-  "integrity" "sha512-83AuNN4cWdLVi//3ugR8E3kR6rrOwhXZt+hOCm1IjtIGj353/GlrtpMHpqZHU5kqipzj4miy9dweVdukXglVWw=="
-  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-generator-index/-/hexo-generator-index-3.0.0.tgz"
-  "version" "3.0.0"
+"hexo-generator-index-pin-top@^0.2.2":
+  "integrity" "sha512-1mVXHoUL5a3Q3yvIqoRVFhbJPlVAnRfc9ibToWpIlxU7ILTJwxhT6NFiS/jf/yZ0Suq1HvTI68yViMQMQVoDvg=="
+  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-generator-index-pin-top/-/hexo-generator-index-pin-top-0.2.2.tgz"
+  "version" "0.2.2"
   dependencies:
-    "hexo-pagination" "3.0.0"
+    "hexo-pagination" "0.0.2"
+    "object-assign" "^4.0.1"
 
 "hexo-generator-search@^2.4.3":
   "integrity" "sha512-Z5hfZq2g3np/Tgdp2q9HobfIvU6Pdz89tnTurc1IIq/vW0MHgDynk0Aiv6kvMtKWthnZ5l0iEMT3YLN35NdYwQ=="
@@ -1628,6 +1629,13 @@
     "lodash.get" "^4.4.2"
     "markmap-common" "^0.1.6"
     "markmap-lib" "^0.11.6"
+
+"hexo-pagination@0.0.2":
+  "integrity" "sha1-jPRwx9sN5bGKOSanbesZQBXffys="
+  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-pagination/-/hexo-pagination-0.0.2.tgz"
+  "version" "0.0.2"
+  dependencies:
+    "utils-merge" "^1.0.0"
 
 "hexo-pagination@3.0.0":
   "integrity" "sha512-8oo1iozloZo7TojPVYg4IxL3SJKCBdSJ908fTlIxIK7TWJIKdYnQlW31+12DBJ0NhVZA/lZisPObGF08wT8fKw=="
@@ -2657,7 +2665,7 @@
   "resolved" "https://mirrors.cloud.tencent.com/npm/object-assign/-/object-assign-1.0.0.tgz"
   "version" "1.0.0"
 
-"object-assign@^4.1.1":
+"object-assign@^4.0.1", "object-assign@^4.1.1":
   "integrity" "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
   "resolved" "https://mirrors.cloud.tencent.com/npm/object-assign/-/object-assign-4.1.1.tgz"
   "version" "4.1.1"

@@ -36,3 +36,8 @@ if (r != null && !r.finishing) {
 这里的 r 就是 Launcher。
 
 删除了 Layer 逻辑正常，说明 WMS 部分在显示 Launcher 时窗口时不正确，导致 SurfaceView 部分的 layer 不显示。
+
+那么这里就会有两个问题：
+
+1. 名字为 SurfaceView - xxx.xxx.xxxActivity 这个 Layer 它是如何显示的
+2. 这个 Layer 和窗口部分的逻辑有什么关联

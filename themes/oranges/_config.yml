@@ -84,11 +84,11 @@ navbar:
     enable: true
     path: /
     key: home
-  # -
-  #   name: 归档
-  #   enable: true
-  #   path: /archives/
-  #   key: archives
+  -
+    name: 归档
+    enable: true
+    path: /archives/
+    key: archives
   -
     name: 标签
     enable: true
