@@ -52,6 +52,12 @@ PRODUCT_PACKAGES += \
                 AppName
 ```
 
+**添加应用权限配置**
+
+```bash
+frameworks/base/data/etc/privapp-permissions-platform.xml
+```
+
 ### 禁止下拉状态栏
 
 上锁屏界面状态栏要禁止下拉请按如下方案修改：
@@ -165,4 +171,73 @@ try {
 } finally {
     Trace.traceEnd(TRACE_TAG_PACKAGE_MANAGER);
 }
+```
+
+### 添加系统服务
+
+**添加服务**
+vendor 下新建服务目录 TestShell
+
+```bash
+android/vendor/service/TestShell
+```
+
+**添加配置 Android.mk**
+
+```mk
+LOCAL_PATH := \$(call my-dir)
+
+include \$(CLEAR_VARS)
+LOCAL_CFLAGS += -Wno-unused-result
+LOCAL_CFLAGS += -D\_\_ANDROID_O
+LOCAL_CFLAGS += -Wno-unused-variable
+LOCAL_CFLAGS += -Wno-sign-compare
+LOCAL_CFLAGS += -Wno-pointer-sign
+LOCAL_CFLAGS += -Wno-unused-function
+LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += -Wno-unused-variable
+LOCAL_CFLAGS += -Wno-implicit-function-declaration
+LOCAL_CFLAGS += -Wno-unused-result
+LOCAL_CPPFLAGS += -fexceptions
+
+LOCAL_MODULE := testshell
+LOCAL_SRC_FILES := \ TestShell.cpp
+
+LOCAL_SHARED_LIBRARIES := \
+ libstdc++ \
+ libcutils \
+ libutils \
+ libbinder \
+ libandroid \
+ libcompiler_rt \
+ liblog
+
+LOCAL_INIT_RC := testshell.rc # 设置 init rc
+
+LOCAL_MODULE_TAGS := optional
+include \$(BUILD_EXECUTABLE)
+
+```
+
+**添加自启 testshell.rc**
+
+```mk
+service arparashell /system/bin/testshell
+class main
+user root
+group system graphics sdcard_rw sdcard_r wifi inet
+socket testshell stream 0777 root root
+seclabel u:r:arparashell:s0
+capabilities SYS_NICE
+onrestart restart zygote
+```
+
+**跟随系统一起编译**
+
+```mk
+android/device/qcom/kona/kona.mk
+android/build/make/target/product/base_vendor.mk
+
+PRODUCT_PACKAGES += \
+ testshell
 ```
