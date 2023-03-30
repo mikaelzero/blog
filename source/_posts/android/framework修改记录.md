@@ -241,3 +241,19 @@ android/build/make/target/product/base_vendor.mk
 PRODUCT_PACKAGES += \
  testshell
 ```
+
+### 拦截应用类型
+
+在 ActivityStarter 中的 startActivity 方法中进行拦截，比如要将 option 的 displayId 进行修改:
+
+```java
+        ActivityOptions checkedOptions = options != null
+                ? options.getOptions(intent, aInfo, callerApp, mSupervisor) : null;
+        if (allowPendingRemoteAnimationRegistryLookup) {
+            checkedOptions = mService.getActivityStartController()
+                    .getPendingRemoteAnimationRegistry()
+                    .overrideOptionsIfNeeded(callingPackage, checkedOptions);
+        }
+        //在这里添加你的拦截代码
+
+```
