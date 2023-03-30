@@ -4,8 +4,8 @@ urlname: between_singlebuffer_vsync
 date: 2022/11/11
 tags:
   - SurfaceFlinger
-  - vsync
-  - singlebuffer
+  - Vsync
+  - Singlebuffer
 ---
 
 单缓冲可以有效地减少延时, 因为双缓冲是需要等待 vsync 再进行提交数据, 而单缓冲窗口随时可以自己控制提交的时机, 单缓冲的最大问题就是画面撕裂.

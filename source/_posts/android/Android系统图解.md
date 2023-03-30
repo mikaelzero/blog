@@ -3,8 +3,8 @@ title: Android系统图解
 urlname: android_system_image
 date: 2022/08/06
 tags:
-  - android
-  - framework
+  - Android
+  - Framework
 ---
 
 ### 系统启动过程

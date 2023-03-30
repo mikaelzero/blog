@@ -3,7 +3,7 @@ title: 为什么VR和AR需要Micro OLED？
 urlname: why-do-VR-AR-need-Micro-OLED
 date: 2023/03/25
 tags:
-  - vr
+  - VR
   - Micro-OLED
   - 光学
 ---

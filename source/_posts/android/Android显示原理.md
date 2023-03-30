@@ -3,8 +3,8 @@ title: Android显示原理
 urlname: android_display_principle
 date: 2023/01/06
 tags:
-  - android
-  - graphic
+  - Android
+  - Graphic
 ---
 
 > 相关的类的定义和功能可以查看 [Android 显示原理(手册)](/posts/android_display_principle_manual)

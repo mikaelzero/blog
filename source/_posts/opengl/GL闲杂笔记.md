@@ -3,7 +3,7 @@ title: GL闲杂笔记
 urlname: gl_notes
 date: 2022/10/06
 tags:
-  - opengl
+  - OpenGL
 ---
 
 EGL 是 OpenGL ES 渲染 API 和本地窗口系统(native platform window system)之间的一个中间接口层, 它主要由系统制造商实现. EGL 提供如下机制：

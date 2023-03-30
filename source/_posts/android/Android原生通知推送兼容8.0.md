@@ -3,8 +3,8 @@ title: Android 原生通知推送兼容 8.0
 urlname: android_notification_push_compatible_8
 date: 2022/03/05
 tags:
-  - android
-  - framework
+  - Android
+  - Framework
 ---
 
 Android 8.0 通知需要设置通知渠道才能正常显示, 步骤如下：

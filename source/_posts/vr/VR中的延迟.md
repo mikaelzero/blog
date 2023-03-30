@@ -3,8 +3,8 @@ title: VR中的延迟
 urlname: latency_in_vr
 date: 2022/12/11
 tags:
-  - vr
-  - latency
+  - VR
+  - Latency
 ---
 
 VR 中的”延迟”, 特指”Motion-To-Photon Latency”

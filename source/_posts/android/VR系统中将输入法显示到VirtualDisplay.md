@@ -3,8 +3,8 @@ title: VR系统中将2D输入法显示到VirtualDisplay
 urlname: principle-analysis-of-input-method
 date: 2023/03/21
 tags:
-  - android
-  - framework
+  - Android
+  - Framework
   - IMMS
   - IMS
   - 输入法
@@ -239,3 +239,20 @@ mOccupiedWidth 就是键盘的整个宽度,mOccupiedWidth 的值,默认是这样
 1. 放在虚拟屏上的输入法，一般不显示提取区，所以还要在全屏模式的判断改下逻辑，在 IMS 的 onEvaluateFullscreenMode 中直接返回 false，也就是禁用全屏模式的逻辑。
 2. 在函数 computeImeDisplayIdForTarget 中，应该还需要通过 AIDL 来传递 DisplayId。
 3. 由于输入法窗口的大小可能会随着用户使用而改变，所以需要动态地传递给 Unity 让 Unity 更新面板大小。
+
+补充：
+
+显示窗口问题还少了一部分代码,在 InputManagerService 中的 setInputView 方法：
+
+```java
+    public void setInputView(View view) {
+        mInputFrame.removeAllViews();
+         FrameLayout frameLayout = new FrameLayout(getBaseContext());
+         frameLayout.addView(view);
+        mInputFrame.addView(frameLayout, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        mInputView = view;
+```
+
+需要额外再添加一层 FrameLayout，否则窗口显示会有问题，原因暂时未研究。

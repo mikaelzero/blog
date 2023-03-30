@@ -3,8 +3,8 @@ title: 在flutter中使用ffi调用c++
 urlname: use_cpp_in_flutter
 date: 2022/09/09
 tags:
-  - c/c++
-  - flutter
+  - C/C++
+  - Flutter
 ---
 
 ### 前提

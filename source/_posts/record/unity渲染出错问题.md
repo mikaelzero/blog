@@ -4,9 +4,9 @@ urlname: unity_render_error
 date: 2022/11/11
 tags:
   - SurfaceFlinger
-  - layer
-  - unity
-  - render
+  - Layer
+  - Unity
+  - Render
 ---
 
 ### call to OpenGL ES API with no current context (logged once per thread)

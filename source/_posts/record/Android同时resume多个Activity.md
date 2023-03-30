@@ -3,8 +3,8 @@ title: Android同时resume多个Activity
 urlname: resume-multiple-activities-simultaneously-after-waking_up-from-sleep.
 date: 2023/03/28
 tags:
-  - android
-  - framework
+  - Android
+  - Framework
   - AMS
 ---
 
@@ -87,6 +87,15 @@ if (r != null && !r.finishing) {
 }
 
 resumeFocusedStacksTopActivities()
+```
+
+并且还需要在 resumeTopActivityUncheckedLocked 方法的 shouldBeVisible 条件中加入一个判断，因为如果不加判断，A 就会直接调用 completeResumeLocked 导致不走 resume
+
+```java
+            if (shouldBeVisible(next)||next.isActivityTypeHome()) {
+                notUpdated = !mRootActivityContainer.ensureVisibilityAndConfig(next, mDisplayId,
+                        true /* markFrozenIfConfigChanged */, false /* deferResume */);
+            }
 ```
 
 ## Layer 异常

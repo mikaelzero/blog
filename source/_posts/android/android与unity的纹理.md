@@ -3,8 +3,8 @@ title: android与unity的纹理
 urlname: android_unity_texture
 date: 2022/03/22
 tags:
-  - android
-  - unity
+  - Android
+  - Unity
   - texture2D
 ---
 

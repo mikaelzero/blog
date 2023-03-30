@@ -3,8 +3,8 @@ title: Android显示原理(手册)
 urlname: android_display_principle_manual
 date: 2022/06/06
 tags:
-  - android
-  - graphic
+  - Android
+  - Graphic
 ---
 
 ## AMS
