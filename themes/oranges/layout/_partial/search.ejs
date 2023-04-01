@@ -1,9 +1,4 @@
 <% if (theme.search.enable) { %>
-  <div class="search-icon tools-bar-item" id="search-icon">
-    <a href="javascript: void(0)">
-      <i class="iconfont icon-search"></i>
-    </a>
-  </div>
 
   <div class="search-overlay hidden">
     <div class="search-content" tabindex="0">
@@ -15,14 +10,14 @@
         </span>
         <% if (theme.search.placeholder) { %>
           <input type="text" class="search-input" id="search-input" placeholder="<%- theme.search.placeholder %>">
-        <% } else { %>
-          <input type="text" class="search-input" id="search-input" placeholder="<%= __('search') %>">
-        <% } %>
-        <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-close"></i>
-          </a>
-        </span>
+          <% } else { %>
+            <input type="text" class="search-input" id="search-input" placeholder="<%= __('search') %>">
+            <% } %>
+              <span class="search-close-icon" id="search-close-icon">
+                <a href="javascript: void(0)">
+                  <i class="iconfont icon-close"></i>
+                </a>
+              </span>
       </div>
       <div class="search-result" id="search-result"></div>
     </div>
@@ -32,13 +27,13 @@
     var inputArea = document.querySelector("#search-input")
     var searchOverlayArea = document.querySelector(".search-overlay")
 
-    inputArea.onclick = function() {
+    inputArea.onclick = function () {
       getSearchFile()
       this.onclick = null
     }
 
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
+    inputArea.onkeydown = function () {
+      if (event.keyCode == 13)
         return false
     }
 
@@ -169,7 +164,7 @@
             $resultContent.innerHTML = str;
           });
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
             $resultContent.innerHTML = "<ul><span class='local-search-empty'><%= __('searchFilesNotfound') %><a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
@@ -178,16 +173,16 @@
           }
         }
       });
-      $(document).on('click', '#search-close-icon', function() {
+      $(document).on('click', '#search-close-icon', function () {
         $('#search-input').val('');
         $('#search-result').html('');
       });
     }
 
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
+    var getSearchFile = function () {
+      var path = "/search.xml";
+      searchFunc(path, 'search-input', 'search-result');
     }
   </script>
 
-<% } %>
+  <% } %>

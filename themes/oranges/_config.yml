@@ -27,7 +27,7 @@ favicon:
 # 用户头像与昵称
 avatar:
   author_photo: /images/avatar.png
-  author_nickname: MikaelZero
+  author_nickname: mikaelzero
   path: /
 
 # Google 分析
@@ -80,17 +80,17 @@ comments:
 # 主题页面导航栏
 navbar:
   -
-    name: 主页
+    name: Posts
     enable: true
     path: /
     key: home
   -
-    name: 归档
-    enable: true
-    path: /archives/
-    key: archives
-  -
-    name: 标签
+  #   name: 归档
+  #   enable: true
+  #   path: /archives/
+  #   key: archives
+  # -
+    name: Tags
     enable: true
     path: /tags/
     key: tags
