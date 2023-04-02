@@ -1,48 +1,15 @@
 <div class="header">
-  <div class="logo-wrapper"><a href="<%- theme.avatar.path %>" class="logo"><%- theme.avatar.author_nickname %></a>
+  <div class="avatar">
+    <div class="nickname"><a href="<%- theme.avatar.path %>"><%- theme.avatar.author_nickname %></a></div>
   </div>
-  <div style="justify-content: center;
- align-items: center;
- display: flex;
- margin-left: auto;">
-    <div class="navbar">
-      <ul>
-        <% for(let item of theme.navbar) { if (item.enable) { %>
-          <li class="nav-item navbar_ul_li" data-path="<%- item.path %>">
-            <a href="<%- item.path %>"><%- item.name %></a>
-          </li>
-          <% } } %>
-
-      </ul>
-    </div>
-    <div class="navbar2">
-
-      <ul>
-        <li id="search-icon">
-          <a href="javascript: void(0)">
-            <i class="iconfont icon-search"></i>
-          </a>
+  <div class="navbar">
+    <ul>
+      <% for(let item of theme.navbar) { if (item.enable) { %>
+        <li class="nav-item" data-path="<%- item.path %>">
+          <a href="<%- item.path %>"><%- item.name %></a>
         </li>
-        <li id="switch-color-scheme">
-          <a href="javascript: void(0)">
-            <i id="theme-icon" class="iconfont icon-moon"></i>
-          </a>
-        </li>
-        <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/mikaelzero">
-            <i class="iconfont icon-github"></i>
-          </a>
-        </li>
-
-        <li>
-          <a title="rss" href="/atom.xml">
-            <i class="iconfont icon-rss"></i>
-          </a>
-        </li>
-
-      </ul>
-    </div>
-
+        <% } } %>
+    </ul>
   </div>
 </div>
 

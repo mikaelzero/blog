@@ -2,6 +2,7 @@
   font-family: "FZY Font";
   src: url("../font/fangzheng_yuan.ttf");
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -13,11 +14,9 @@ body {
   letter-spacing: 0.01rem;
   background-color: var(--bg-body);
   transition: color 400ms ease-in-out 0s, background-color 400ms ease-in-out 0s;
-  font-family: "FZY Font", system-ui, "Microsoft Yahei", "Segoe UI",
-    -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial,
-    "WenQuanYi Micro Hei", sans-serif;
-  /* font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; */
+  /* font-family: 'FZY Font', system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif */
+  font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 body.hidden {
@@ -87,39 +86,7 @@ a:hover {
 }
 
 .header {
-  width: 50%;
-  margin: 0 auto;
-  padding: 40px;
-  display: flex;
-}
-.header:before,
-.header:after {
-  content: " ";
-  display: table;
-}
-.header:after {
-  clear: both;
-}
-.header .logo-wrapper {
-  float: left;
-}
-.header .logo-wrapper .logo {
-  font-size: 32px;
-}
-@media screen and (max-width: 800px) {
-  .header .logo-wrapper {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .header {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    padding: 40px 0 40px 0;
-    display: flex;
-  }
+  padding: 50px 0;
 }
 
 .container {
@@ -133,9 +100,6 @@ a:hover {
 .tag-index .tag-list,
 .about-index .markdown-body {
   padding: 0 40px;
-}
-.index .post-list {
-  padding: 0;
 }
 
 .category-index .category-list {
@@ -284,17 +248,14 @@ a:hover {
   font-size: 1.6rem;
   color: var(--color-text-a);
   margin-bottom: 20px;
+  /*font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;*/
 }
 
 .navbar {
-  float: right;
-}
-
-.navbar ul {
-  display: inline-block;
-  position: relative;
-  padding-left: 0;
-  padding-right: 25px;
+  margin-left: calc(100vw - 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar ul li {
@@ -308,37 +269,6 @@ a:hover {
 
 .navbar ul li a {
   padding-bottom: 2px;
-  font-size: 24px;
-}
-
-.navbar2 {
-  float: right;
-  margin-left: -1rem;
-}
-
-.navbar2 ul {
-  display: inline-block;
-  position: relative;
-  padding-left: 0;
-  padding-right: 25px;
-}
-
-.navbar2 ul li {
-  position: relative;
-  display: inline-block;
-  margin: 0 15px;
-  font-size: 1.65rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.navbar2 ul li a {
-  padding-bottom: 2px;
-  font-size: 24px;
-}
-
-.navbar2 ul li a i{
-  font-size: 24px;
 }
 
 .navbar ul li a:hover::after {
