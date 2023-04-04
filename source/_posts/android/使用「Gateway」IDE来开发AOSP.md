@@ -17,7 +17,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/mikaelzero/ImageSource/main/uPic/WJ142e.png)
 
-在服务器上使用 Aidegen
+在服务器上使用 Aidegen,前提是你需要先编过 frameworks 或者是整编过源码
 
 首先进入 android 根目录
 
