@@ -38,29 +38,20 @@ tags:
 
 launcher 首先需要 resume, 由于非栈顶导致 Activity config changed during resume,直接走 ActivityRecord 的 completeResumeLocked
 
-- completeResumeLocked
-
-- - mStackSupervisor.scheduleIdleTimeoutLocked
-
-- - mStackSupervisor.reportResumedActivityLocked
-
-- - - ensureActivitiesVisibleLocked
-
-- - - - mRootActivityContainer.ensureActivitiesVisible(优先获取栈顶且在 home 之上的 display)
-
-- - - - - display.ensureActivitiesVisible(循环所有的 ActivityStack)
-
-- - - - - stack.ensureActivitiesVisibleLocked(火狐)
-
-- - - - - - activityRecord.makeActiveIfNeeded->shouldResumeActivity(判断当前栈顶的 activity 的状态确定是否需要 resume)
-
-- - - - - - stack.resumeTopActivityInnerLocked(从这里开始就是去 resume 火狐)
-
-- - - - - - stack.pauseBackStacks(在操作之前已经处理了 stack 的顺序, 因此现在的 launcher 在栈中是最顶端, 暂停所有堆栈或 back stacks 中的所有活动, 由于 launcher 在底部, 因此会进行暂停操作)
-
-- - - - - 第二次进入 stack.ensureActivitiesVisibleLocked(launcher)
-
-- - - - - - 走到 makeActiveIfNeeded 的时候发现没有需要 resume 和 pause 的 activity, 直接跳出,至此流程走完
+```bash
+completeResumeLocked
+-> mStackSupervisor.scheduleIdleTimeoutLocked
+-> mStackSupervisor.reportResumedActivityLocked
+ -> ensureActivitiesVisibleLocked
+ -> mRootActivityContainer.ensureActivitiesVisible(优先获取栈顶且在 home 之上的 display)
+ -> display.ensureActivitiesVisible(循环所有的 ActivityStack)
+ -> stack.ensureActivitiesVisibleLocked(火狐)
+  -> activityRecord.makeActiveIfNeeded->shouldResumeActivity(判断当前栈顶的 activity 的状态确定是否需要 resume)
+  -> stack.resumeTopActivityInnerLocked(从这里开始就是去 resume 火狐)
+  -> stack.pauseBackStacks(在操作之前已经处理了 stack 的顺序, 因此现在的 launcher 在栈中是最顶端, 暂停所有堆栈或 back stacks 中的所有活动, 由于 launcher 在底部, 因此会进行暂停操作)
+  -> 第二次进入 stack.ensureActivitiesVisibleLocked(launcher)
+   -> 走到 makeActiveIfNeeded 的时候发现没有需要 resume 和 pause 的 activity, 直接跳出,至此流程走完
+```
 
 ### ensureActivitiesVisibleLocked
 
