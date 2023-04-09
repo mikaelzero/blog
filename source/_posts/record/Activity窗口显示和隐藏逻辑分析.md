@@ -63,24 +63,7 @@ ensureActivitiesVisibleLocked 方法用来保证 activity 的可见性, 来确�
 
 从上到下找到第一个全屏显示的 Activity 组件, 并且将该 Activity 组件以及位于该 Activity 组件上面的其它 Activity 组件的可见性设置为 true
 
-home 按键：
-
-com.android.server.policy.PhoneWindowManager.interceptKeyBeforeDispatchingInner:2807
-
-com.android.server.policy.PhoneWindowManager.interceptKeyBeforeDispatching:2666
-
-com.android.server.wm.InputManagerCallback.interceptKeyBeforeDispatching:183
-
-com.android.server.input.InputManagerService.interceptKeyBeforeDispatching:1901
-
-调用时机：
-
-ActivityThread 调用了 handleReusmeActivity 后会发送一个 msg 为 Idle, 在消息机制中空闲的时候进行 activityIdleInternal 处理, 会调用 ensureActivitiesVisibleLocked, 有几个 Activity 就会调用几次, 用来确保一定会有 activity 显示
-ActivityStack.resumeTopActivityUncheckedLocked 整个链路下来会调用到
-RootActivityContainer.resumeFocusedStacksTopActivities 整个链路下来会调用到
-调用路径
-
-如果想要自己的页面不被隐藏, 需要在 ensureActivitiesVisibleLocked 方法中将 behindFullscreenActivity 设置为 false
+如果想要自己的页面不被隐藏, 需要在 ensureActivitiesVisibleLocked 方法中将 behindFullscreenActivity 设置为 false，比如想要将 dock 设置为一直可见，behindFullscreenActivity 为 false 的同时，还需要保持 dock 不能被 pasue
 
 ### ActivityDisplay 的创建
 
