@@ -8,6 +8,66 @@ tags:
   - Tools
 ---
 
+https://time.geekbang.org/column/article/645221
+
+## Repo & Gerrit 代码管理
+
+我们先来看看代码的管理。由于 Android 源码的代码量庞大，采用的是多个 Git 仓库来管理代码。你可以通过 GoogleSource 查看对应的仓库，大约有 3000 个仓库。那么，假如有一个需求开发涉及到跨多个仓库的修改，我们怎么来维护代码提交以及同步工作呢？为了解决这个问题，官方提供了一个多 Git 仓代码管理的工具—— Repo。根据官网的介绍，Repo 不会取代 Git，目的是帮助我们在 Android 环境中更轻松地使用 Git。Repo 将多个 Git 项目汇总到一个 Manifest 文件中，使用 Repo 命令来并发操作多个 Git 仓库的代码提交与代码同步很方便。我用表格梳理了一些 Repo 常用的命令，供你参考。
+
+通常使用 Repo 进行 Android 开发的基本工作流程如下图所示，包括创建分支、修改文件、提交暂存、提交更改以及最后上传到审核服务器。
+
+另外，一般情况下，应用开发使用的代码审核工具都是类似于 GitLab 平台，通过临时分支拉取 Merge Request 提交代码审核，审核通过后，完成代码入库。针对于多仓库的代码审核，官方提供了另外一个代码审核工具—— Gerrit。Gerrit  是一个基于网页的代码审核系统，适用于使用 Git 的项目。Google 原先就是为了管理 Android 项目而设计了 Gerrit。与 Merge Request 的代码审核差异是，Gerrit 采用 +1 +2 打分的方式来控制代码的合入，你可以结合后面的截图来理解。
+![wwCDHI](https://cdn.jsdelivr.net/gh/mikaelzero/ImageSource@main/uPic/wwCDHI.jpg)
+
+## Soong 编译系统
+
+接下来，我们来看看 Android 系统的编译。前面从代码仓库管理可以看到，Android 系统有近 3000 多个仓库，如何来管理这么多代码的编译构建以及最终生成 img 镜像，自然是一个非常复杂的问题。为此，Google 在 Android 7.0 (Nougat) 中引入了 Sooong 编译系统，旨在取代 Make。它利用  Kati GNU Make 克隆工具和  Ninja  构建系统组件来加速 Android 的构建。我画了一张示意图，帮你梳理 Make、Kati、Soong、Ninja 等工具的关系。
+
+Android.bp 与 Ninja 的区别在于, Android.bp 的目标对象是开发者，开发者基于 bp 的语法规则来编写脚本， Ninja 的目标是成为汇编程序，通过将编译任务并行组织，大大提高了构建速度。我们从上图可以看出，Soong 通过 Android.bp 文件来定义和描述一个模块的构建。Android.bp  文件很简单，它们不包含任何条件语句，也不包含控制流语句。接下来，我以桌面的 Android.bp 文件为例，带你了解一下基本的 bp 语法规则，代码是后面这样。
+
+```bp
+
+//模块类型，定义构建产物的类型，例如这里的android_app就是定义生成APK类型
+android_app {
+    //应用名称
+    name: "Launcher3",
+    //编译所依赖的静态库
+    static_libs: [
+        "Launcher3CommonDepsLib",
+    ],
+    //编译源码路径
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+        "src_shortcuts_overrides/**/*.java",
+        "src_shortcuts_overrides/**/*.kt",
+        "src_ui_overrides/**/*.java",
+        "src_ui_overrides/**/*.kt",
+        "ext_tests/src/**/*.java",
+        "ext_tests/src/**/*.kt",
+    ],
+    //编译资源路径
+    resource_dirs: [
+        "ext_tests/res",
+    ],
+    //配置混淆
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+        // Proguard is disable for testing. Derivarive prjects to keep proguard enabled
+        enabled: false,
+    },
+    //配置编译相关的SDK版本号
+    sdk_version: "current",
+    min_sdk_version: min_launcher3_sdk_version,
+    target_sdk_version: "current",
+    //... ...
+}
+```
+
+## 自动化测试
+
+最后，我们一起来聊聊 Android 系统中的自动化测试。大部分的厂商都会基于 Android 系统扩展定制代码，为了保证厂商扩展代码后不会影响原来系统框架的功能，能够满足兼容性的要求，Google 提供了 CTS 以及 VTS 测试套件。CTS（Compatibility Test Suite）中文为兼容性测试套件，主要用于测试 App 和 framework 的兼容性。VTS（Vendor Test Suite）中文为供应商测试套件  ，主要会自动执行 HAL 和操作系统内核测试，如下图所示。
+
 安卓因为源码太多，使用单一 git 仓库非常缓慢且不方便，所以做了一个 repo 工具，把安卓系统拆分成很多个 git,然后用 repo 统一管理
 官方解释
 要处理 Android 代码，您需要同时使用 Git 和 Repo。在大多数情况下，您可以仅使用 Git（不必使用 Repo），或结合使用 Repo 和 Git 命令以组成复杂的命令。不过，使用 Repo 执行基本的跨网络操作可大大简化您的工作。
