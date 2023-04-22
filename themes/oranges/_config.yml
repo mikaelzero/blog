@@ -94,11 +94,11 @@ navbar:
     enable: true
     path: /tags/
     key: tags
-  # -
-  #   name: 关于
-  #   enable: true
-  #   path: /about/
-  #   key: about
+  -
+    name: About
+    enable: true
+    path: /about/
+    key: about
   # -
   #   name: RSS
   #   enable: true
