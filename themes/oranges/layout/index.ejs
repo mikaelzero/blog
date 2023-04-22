@@ -1,38 +1,32 @@
-<!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
-
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
-
-<div class="container archives">
+<div class="container index">
   <div class="post-list">
-    <%
-      var prev = -10086;// prev year
-      var curr;// curr year, ever step be updated
-
-      site.posts.sort('date', -1).each(function(item, index) {
-        curr = item.date.year()
-        if (curr !== prev) {
-          prev = curr;
-      %>
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span><%- curr %></span>
-          </h2>
-        </div>
-      <%
-        }
-      %>
+    <!-- 遍历渲染文章 -->
+    <% page.posts.forEach(function(item) { %>
       <div class="post-item" title="<%- item.title %>">
-        <div class="time-m-d"><%- item.date.format("MM-DD") %></div>
+        <div class="time-m-d"><%- item.date.format("YYYY-MM-DD") %></div>
         <div class="title">
           <a href="<%- url_for(item.path) %>">
-            <span><%- item.title %></span>
+            <% if(item.title !== "") { %>
+              <% if (item.top) { %>
+                <span><span title="<%= __('pinned') %>" class="icon iconfont icon-pin-top post-top"></span><%- item.title %></span>
+              <% } else { %>
+                <span><%- item.title %></span>
+              <% } %>
+            <% } else { %>
+              <span>untitled</span>
+            <% } %>
           </a>
         </div>
       </div>
-    <%
-      });
-    %>
+    <% }) %>
   </div>
+  <nav class="post-navigation">
+    <% if(page.prev !== 0){ %>
+      <a href="<%- url_for(page.prev_link)%>"><i class="iconfont icon-angleleft"></i></a>
+    <% } %>
+    <span class="page-num"><%- page.current %> / <%- page.total -%></span>
+    <% if(page.next !== 0){ %>
+      <a href="<%- url_for(page.next_link)%>"><i class="iconfont icon-angleright"></i></a>
+    <% } %>
+  </nav>
 </div>
