@@ -1,5 +1,5 @@
 ---
-title: 玩玩ShaderToy
+title: ShaderToy(一):如何使用
 urlname: play-shadertoy
 date: 2023/05/02
 tags:
