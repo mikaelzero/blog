@@ -4,6 +4,7 @@ urlname: play-shadertoy
 date: 2023/05/02
 tags:
   - OpenGL
+  - Shader
 ---
 
 ## 什么是 Shadertoy？
