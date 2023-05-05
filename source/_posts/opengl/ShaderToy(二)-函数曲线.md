@@ -194,3 +194,9 @@ float y = smoothstep(-1.,1.,sin(st.x));
 ```
 
 smoothstep 是将给定的范围和值映射到 0 到 1 的范围，而 sin 函数的域为 [-1,1]。当然如果修改了 sin 函数的振幅，前两个参数也需要修改。
+
+如果加上一个时间来修改 k,那么这个曲线就会动起来
+
+```glsl
+float y = smoothstep(-1.,1.,sin(20.*st.x+iTime));
+```
