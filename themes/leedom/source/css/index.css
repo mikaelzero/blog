@@ -20,7 +20,7 @@
 .main h2 {
   font-size: 20px;
   letter-spacing: 1px;
-  margin-left: 160px;
+  margin-left: 120px;
 }
 .main h2 a {
   color: #444;
@@ -29,7 +29,7 @@
   color: #f33;
 }
 .main h3 {
-  font-size: 16px;
+  font-size: 13px;
   color: #999;
   position: absolute;
   left: 0;
@@ -37,7 +37,7 @@
 }
 @media screen and (max-width: 420px) {
   .main h2 {
-    font-size: 20px;
+    font-size: 16px;
     margin-left: 0;
   }
   .main h2 a:hover {

@@ -289,8 +289,11 @@ pre .xml .cdata {
     font-size: 12px;
     margin: 0 0 20px;
   }
+  .post .content {
+    font-size: 15px;
+  }
   .post .content pre {
-    font-size: 13px;
+    font-size: 12px;
   }
   .post .content blockquote p {
     font-size: 16px;
