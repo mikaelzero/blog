@@ -1,13 +1,8 @@
 body {
-  font-family: "Roboto", "Helvetica Neue", "Hiragino Sans GB", "LiHei Pro", Arial, serif;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: 16px;
-  word-spacing: 1px;
+  font-family: Baskerville, "Times New Roman", SimSun, serif;
+  font-size: 22px;
+  line-height: 1.8;
   color: #323131;
-  margin: 0;
 }
 
 img {
