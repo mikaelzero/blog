@@ -3,7 +3,6 @@ title: Android显示原理
 urlname: android_display_principle
 date: 2023/01/06
 tags:
-  - Android
   - Graphic
 ---
 

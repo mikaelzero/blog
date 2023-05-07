@@ -6,7 +6,6 @@ tags:
   - VR
   - SurfaceFlinger
   - Singlebuffer
-  - Android
 ---
 
 SurfaceFlinger 是 Android 系统中的一个系统服务，主要负责管理所有图形层，并将它们合成为最终的显示图像。具体来说，SurfaceFlinger 的主要工作包括以下几个方面：

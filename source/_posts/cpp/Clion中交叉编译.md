@@ -3,8 +3,6 @@ title: Clion中交叉编译
 urlname: compile_lib_with_ndk
 date: 2022/09/09
 tags:
-  - Compile
-  - Clion
   - Ndk
 ---
 

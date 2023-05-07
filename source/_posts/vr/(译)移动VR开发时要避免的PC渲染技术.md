@@ -4,7 +4,6 @@ urlname: pc_rendering_avoid_when_developing_for_mobile_vr
 date: 2022/12/11
 tags:
   - VR
-  - 译文
 ---
 
 **更新：本文是为 Quest 1 开发人员编写的. 虽然 Quest 2 建立在相同的架构上, 但现在更容易为阴影贴图（以及其他需要从先前渲染过程中生成的纹理读取的简单技术）做预算. **

@@ -3,10 +3,7 @@ title: VR系统中将2D输入法显示到VirtualDisplay
 urlname: principle-analysis-of-input-method
 date: 2023/03/21
 tags:
-  - Android
   - Framework
-  - IMMS
-  - IMS
   - 输入法
   - 软键盘
 ---

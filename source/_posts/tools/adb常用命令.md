@@ -3,7 +3,6 @@ title: adb常用命令
 urlname: adb-use
 date: 2023/03/28
 tags:
-  - Android
   - Adb
 ---
 

@@ -4,8 +4,6 @@ urlname: why-do-VR-AR-need-Micro-OLED
 date: 2023/03/25
 tags:
   - VR
-  - Micro-OLED
-  - 光学
 ---
 
 ## 什么是 Micro OLED

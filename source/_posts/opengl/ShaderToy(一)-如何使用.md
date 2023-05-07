@@ -1,9 +1,8 @@
 ---
-title: ShaderToy(一):如何使用
+title: ShaderToy(一)-如何使用
 urlname: play-shadertoy
 date: 2023/05/02
 tags:
-  - OpenGL
   - Shader
 ---
 

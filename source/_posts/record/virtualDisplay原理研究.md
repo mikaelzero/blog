@@ -4,7 +4,6 @@ urlname: principle_virtualDisplay
 date: 2022/11/11
 tags:
   - VirtualDisplay
-  - 原理
 ---
 
 问题：
