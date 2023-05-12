@@ -6,6 +6,18 @@ tags:
   - Shader
 ---
 
+颜色一般我们会使用 rgb 来读取，同样的，也可以使用 xyz 来读取:
+
+```glsl
+vec4 vector;
+vector[0] = vector.r = vector.x = vector.s;
+vector[1] = vector.g = vector.y = vector.t;
+vector[2] = vector.b = vector.z = vector.p;
+vector[3] = vector.a = vector.w = vector.q;
+```
+
+## 混合颜色
+
 GLSL 中的 mix 函数是用于线性插值（Lerp）两个值的函数，它的原理是通过加权平均的方式将两个值混合在一起。
 
 具体而言，对于两个值 x 和 y 以及一个插值因子 a，mix 函数的计算公式为：
@@ -19,6 +31,40 @@ mix(x, y, a) = x * (1 - a) + y * a
 在颜色混合的应用中，通常将两个颜色值作为 x 和 y 输入到 mix 函数中，然后通过改变插值因子 a 的值来控制两个颜色之间的混合程度。例如，当 a=0.5 时，返回值为两个颜色值的平均值，即两个颜色的中间色。
 
 所以可以理解 a 为 0 到 1，结果就是 x 到 y。
+
+## 渐变
+
+mix() 函数有更多的用处。我们可以输入两个互相匹配的变量类型而不仅仅是单独的 float 变量，在我们后面例子中用的是 vec3。这样我们便获得了混合颜色单独通道 .r，.g 和 .b 的能力。
+
+本图来自 thebookofshaders
+
+![](images/opengl/mix-vec.jpg)
+
+举一个例子，现在我们想要实现一个这样的效果：
+
+![](images/opengl/sun.gif)
+
+它的效果是一座山，山后边是太阳光照射过来时形成的光晕。看到这样一个效果，你觉得应该从何入手？
+
+首先，需要确定这个曲线的函数，曲线可以自己选择，这里选择一条 quaImpulse
+
+```glsl
+float quaImpulse(float k, float x) {
+    return 2.0 * sqrt(k) * x / (2.0 + k * x * x);
+}
+```
+
+然后在曲线附近进行渐变的处理，可以使用 smoothstep 来处理
+
+```glsl
+vec3 pct = vec3(st.x);
+pct.b = quaImpulse(10.0, st.x);
+smoothstep(pct.b + 0.2, pct.b - 0.2, st.y)
+```
+
+如果不在 smoothstep 的
+
+## HSB
 
 在图形学和计算机图形学中，HSB 是一种颜色表示方式，它由三个参数组成：色相（Hue）、饱和度（Saturation）和亮度（Brightness），其中 HSB 是缩写，也称为 HSV（Value 代替了 Brightness）。HSB 通常用于交互式应用程序和用户界面中，因为它提供了一种直观的方式来控制颜色。
 
