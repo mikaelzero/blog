@@ -1,6 +1,6 @@
 ---
-title: ShaderToy(三)-颜色
-urlname: ShaderToy-color
+title: Shader(三)-颜色
+urlname: shader-color
 date: 2023/05/05
 tags:
   - Shader

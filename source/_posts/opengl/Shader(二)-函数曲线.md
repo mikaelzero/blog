@@ -1,5 +1,5 @@
 ---
-title: ShaderToy(二)-函数曲线
+title: Shader(二)-函数曲线
 urlname: shader-function-curve
 date: 2023/05/03
 tags:
