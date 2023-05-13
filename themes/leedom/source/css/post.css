@@ -216,6 +216,8 @@ pre .xml .cdata {
   color: #999;
 }
 .post img {
+  margin: auto;
+  max-height: 500px;
   display: block;
   max-width: 100%;
 }

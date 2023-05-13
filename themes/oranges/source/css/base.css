@@ -14,9 +14,9 @@ body {
   letter-spacing: 0.01rem;
   background-color: var(--bg-body);
   transition: color 400ms ease-in-out 0s, background-color 400ms ease-in-out 0s;
-  /* font-family: 'FZY Font', system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif */
-  font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: 'FZY Font', system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif
+  /* font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; */
 }
 
 body.hidden {
@@ -29,7 +29,7 @@ body.hidden {
   -webkit-text-size-adjust: 100%;
   line-height: 2;
   color: #24292e;
-  font-size: 1.6rem;
+  font-size: 2.0rem;
   line-height: 2;
   word-wrap: break-word;
   color: var(--color-text-md-content);
@@ -184,7 +184,7 @@ a:hover {
 
 .post-item {
   display: flex;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
   align-items: center;
   line-height: 21px;
