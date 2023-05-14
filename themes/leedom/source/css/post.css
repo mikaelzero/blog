@@ -112,7 +112,7 @@ pre .xml .cdata {
 }
 .post h2:before {
   content: '';
-  border-left: 5px solid #f66;
+  border-left: 5px solid #2BA245;
   position: absolute;
   left: -15px;
   height: 75%;
@@ -156,12 +156,12 @@ pre .xml .cdata {
   left: 0;
 }
 .post .content a {
-  color: #f66;
+  color: #2BA245;
   border-bottom: 2px solid transparent;
 }
 .post .content a:hover {
-  color: #f33;
-  border-bottom-color: #f33;
+  color: #2BA245;
+  border-bottom-color: #2BA245;
 }
 .post .content .highlight,
 .post .content .highlight table {

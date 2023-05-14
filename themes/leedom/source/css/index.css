@@ -26,7 +26,7 @@
   color: #444;
 }
 .main h2 a:hover {
-  color: #f33;
+  color: #2BA245;
 }
 .main h3 {
   font-size: 20px;
@@ -41,7 +41,7 @@
     margin-left: 0;
   }
   .main h2 a:hover {
-    color: #f66;
+    color: #2BA245;
   }
   .main h3 {
     font-size: 11px;
