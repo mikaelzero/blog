@@ -59,10 +59,33 @@ float quaImpulse(float k, float x) {
 ```glsl
 vec3 pct = vec3(st.x);
 pct.b = quaImpulse(10.0, st.x);
-smoothstep(pct.b + 0.2, pct.b - 0.2, st.y)
+color = mix(color, colorB, smoothstep(pct.b + 0.2, pct.b - 0.2, st.y));
 ```
 
-如果不在 smoothstep 的
+这段代码的意思就是当在曲线 0.2 的上下附近时，是这两个颜色的渐变效果，否则各自一个颜色，这样就实现了绿色的山的效果。
+
+其次需要实现后面的阳光的渐变效果，一个是需要根据时间来变化，我们通过 `abs(sin(iTime))`来获取，另一个是只需要上半部分的颜色进行渐变，山的颜色是不变的，因此首先需要限制为曲线的上半部分，然后根据时间转换后的比例来进行颜色变换，代码如下：
+
+```glsl
+float step = smoothstep(pct.b , 1., st.y);
+color = mix(color, colorC, step * pctAbove);
+```
+
+完整代码可参考:[sun.glsl](https://github.com/mikaelzero/Shader/blob/main/src/3.sun.glsl)
+
+## 彩虹和五彩旗
+
+为了增加对 mix 函数的掌握程度，可以想一想，一个彩虹效果用 mix 应该如何实现呢？
+
+![](images/opengl/shader_rainbow.png)
+
+完整代码可参考:[rainbow.glsl](https://github.com/mikaelzero/Shader/blob/main/src/4.rainbow.glsl)
+
+或者一个五彩旗
+
+![](image/opengl/shader_flag.png)
+
+完整代码可参考:[flag.glsl](https://github.com/mikaelzero/Shader/blob/main/src/5.flag.glsl)
 
 ## HSB
 
@@ -71,9 +94,7 @@ smoothstep(pct.b + 0.2, pct.b - 0.2, st.y)
 以下是 HSB 参数的解释：
 
 1. 色相（Hue）：它表示颜色的基本色调。色相以 0 到 360 度的角度表示，其中红色在 0 度，绿色在 120 度，蓝色在 240 度。
-
 2. 饱和度（Saturation）：它表示颜色的纯度或强度。饱和度的值从 0%（灰色）到 100%（全彩色）变化。
-
 3. 亮度（Brightness 或 Value）：它表示颜色的明暗程度，取值范围从 0%（黑色）到 100%（白色）。
 
 在计算机图形学中，HSB 通常被转换为 RGB（红、绿、蓝）颜色空间，因为大多数图形硬件都使用 RGB 颜色空间来显示颜色。通常使用以下公式将 HSB 转换为 RGB：
@@ -81,8 +102,6 @@ smoothstep(pct.b + 0.2, pct.b - 0.2, st.y)
 - 计算饱和度和亮度的百分比值。
 - 根据色相计算对应的红、绿、蓝分量的值。
 - 将所有三个分量的值限制在 0 到 255 的范围内，以保证它们在 RGB 颜色空间中的有效值。
-
-HSB 在计算机图形学中的应用非常广泛，它被用于创建渐变、调整色调、增强图像等，同时还可以帮助设计师和开发人员更好地理解和控制颜色。在着色器编程中，HSB 可以作为一种方便的方式来控制颜色，例如创建更自然的渐变效果、色彩过渡等。
 
 ```glsl
 //  Function from Iñigo Quiles
@@ -106,48 +125,49 @@ void main(){
 
     gl_FragColor = vec4(color,1.0);
 }
-
 ```
+
+这段代码来自 [thebookofshaders.com](https://thebookofshaders.com/06/?lan=ch),作用就是将 x 方向映射为色相，y 方向映射为亮度，效果如下:
+
+![](images/opengl/shader_hsb.png)
 
 ## 色轮
 
 ![](images/opengl/polar_coordinate.svg)
 
 ```glsl
-#ifdef GL_ES
-precision mediump float;
-#endif
-
 #define PI 3.1415
 #define TWO_PI 6.28318530718
 
-uniform vec2 u_resolution;
-uniform float u_time;
-
-//  https://www.shadertoy.com/view/MsS3Wc
-vec3 hsb2rgb( in vec3 c ){
-    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
-                             6.0)-3.0)-1.0,
-                     0.0,
-                     1.0 );
-    rgb = rgb*rgb*(3.0-2.0*rgb);
-    return c.z * mix( vec3(1.0), rgb, c.y);
+// Function from Iñigo Quiles
+// https://www.shadertoy.com/view/MsS3Wc
+vec3 hsb2rgb(in vec3 c) {
+    vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+    rgb = rgb * rgb * (3.0 - 2.0 * rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
 }
 
-void main(){
-    vec2 st = gl_FragCoord.xy/u_resolution;
+float circle(float r, vec2 st) {
+    return smoothstep(r, r + 0.008, length(st - vec2(0.5)));
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy / iResolution.xy;
     vec3 color = vec3(0.0);
 
-    vec2 toCenter = vec2(0.5)-st;
-    float angle = atan(toCenter.y,toCenter.x);
-    float radius = length(toCenter)*2.0;
+    // Use polar coordinates instead of cartesian
+    vec2 toCenter = vec2(0.5) - st;
+    float angle = atan(toCenter.y, toCenter.x);
+    float radius = length(toCenter) * 2.0;
 
-    color = hsb2rgb(vec3((angle+PI)/TWO_PI,radius,1.0));
-
-    gl_FragColor = vec4(color,1.0);
+    color = hsb2rgb(vec3((angle + PI) / TWO_PI, radius, 1.0));
+    color = mix(color, vec3(1.0), circle(0.3, st));
+    gl_FragColor = vec4(color, 1.0);
 }
 
 ```
+
+简单来说，当我们每次判断坐标时，判断坐标到中心点的距离，如果超出，则显示未白色，否则显示为原来的颜色
 
 ```glsl
 vec2 toCenter = vec2(0.5)-st;
