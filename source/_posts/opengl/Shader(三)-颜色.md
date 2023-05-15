@@ -83,17 +83,17 @@ color = mix(color, colorC, step * pctAbove);
 
 或者一个五彩旗
 
-![](image/opengl/shader_flag.png)
+![](images/opengl/shader_flag.png)
 
 完整代码可参考:[flag.glsl](https://github.com/mikaelzero/Shader/blob/main/src/5.flag.glsl)
 
 ## HSB
 
-在图形学和计算机图形学中，HSB 是一种颜色表示方式，它由三个参数组成：色相（Hue）、饱和度（Saturation）和亮度（Brightness），其中 HSB 是缩写，也称为 HSV（Value 代替了 Brightness）。HSB 通常用于交互式应用程序和用户界面中，因为它提供了一种直观的方式来控制颜色。
+HSB 是一种颜色表示方式，它由三个参数组成：色相（Hue）、饱和度（Saturation）和亮度（Brightness），其中 HSB 是缩写，也称为 HSV（Value 代替了 Brightness）。HSB 通常用于交互式应用程序和用户界面中，因为它提供了一种直观的方式来控制颜色。
 
 以下是 HSB 参数的解释：
 
-1. 色相（Hue）：它表示颜色的基本色调。色相以 0 到 360 度的角度表示，其中红色在 0 度，绿色在 120 度，蓝色在 240 度。
+1. 色相（Hue）：它表示颜色的基本色调。就是平常所说的颜色名称，如红色、黄色等。色相以 0 到 360 度的角度表示，其中**红色在 0 度，绿色在 120 度，蓝色在 240 度**。
 2. 饱和度（Saturation）：它表示颜色的纯度或强度。饱和度的值从 0%（灰色）到 100%（全彩色）变化。
 3. 亮度（Brightness 或 Value）：它表示颜色的明暗程度，取值范围从 0%（黑色）到 100%（白色）。
 
