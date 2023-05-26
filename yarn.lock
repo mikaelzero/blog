@@ -1507,11 +1507,6 @@
     "hoek" "0.9.x"
     "sntp" "0.2.x"
 
-"hexo-asset-img@^1.0.0":
-  "integrity" "sha512-9kzp+LINw15ouVrLvCdSLIKGBVhZ/LAJEvWQfowbyXi0OW2jJaJHkSkWcJ6udO4OEaxLvM1ffK+8IXucMAKawQ=="
-  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-asset-img/-/hexo-asset-img-1.0.0.tgz"
-  "version" "1.0.0"
-
 "hexo-blog-encrypt@^3.1.6":
   "integrity" "sha512-aq/KiuwoHLTMOOw0WiVtoTpPfx5x5mjkGJAJgKOp7gH0fjW4Pt1uT2n2MOVWBwY2q3qLtWq60na8RL5qmzZL1w=="
   "resolved" "https://registry.npmmirror.com/hexo-blog-encrypt/-/hexo-blog-encrypt-3.1.6.tgz"
@@ -1576,7 +1571,7 @@
 
 "hexo-generator-feed@^3.0.0":
   "integrity" "sha512-Jo35VSRSNeMitS2JmjCq3OHAXXYU4+JIODujHtubdG/NRj2++b3Tgyz9pwTmROx6Yxr2php/hC8og5AGZHh8UQ=="
-  "resolved" "https://registry.npmmirror.com/hexo-generator-feed/-/hexo-generator-feed-3.0.0.tgz"
+  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-generator-feed/-/hexo-generator-feed-3.0.0.tgz"
   "version" "3.0.0"
   dependencies:
     "hexo-util" "^2.1.0"
@@ -1589,6 +1584,15 @@
   dependencies:
     "hexo-pagination" "0.0.2"
     "object-assign" "^4.0.1"
+
+"hexo-generator-json-content@^4.2.3":
+  "integrity" "sha512-XGqCaTUr6+X8Ty/YvRi+0eh0DJgHcp+lgBhn+Sgyh6ev40P0cwamwJyaZroTdHt8GPoBwbSGVu0H/CdzEf0lFA=="
+  "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-generator-json-content/-/hexo-generator-json-content-4.2.3.tgz"
+  "version" "4.2.3"
+  dependencies:
+    "hexo-util" "latest"
+    "keyword-extractor" "latest"
+    "moment" "latest"
 
 "hexo-generator-search@^2.4.3":
   "integrity" "sha512-Z5hfZq2g3np/Tgdp2q9HobfIvU6Pdz89tnTurc1IIq/vW0MHgDynk0Aiv6kvMtKWthnZ5l0iEMT3YLN35NdYwQ=="
@@ -1708,7 +1712,7 @@
     "picocolors" "^1.0.0"
     "serve-static" "^1.14.1"
 
-"hexo-util@^2.0.0", "hexo-util@^2.1.0", "hexo-util@^2.7.0":
+"hexo-util@^2.0.0", "hexo-util@^2.1.0", "hexo-util@^2.7.0", "hexo-util@latest":
   "integrity" "sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ=="
   "resolved" "https://mirrors.cloud.tencent.com/npm/hexo-util/-/hexo-util-2.7.0.tgz"
   "version" "2.7.0"
@@ -2270,6 +2274,11 @@
   dependencies:
     "commander" "^2.19.0"
 
+"keyword-extractor@latest":
+  "integrity" "sha512-OpsjHSrHMheOEm/K5FQhkXV2wALqFemeI+yub/k2K5suhmodw7wM0RhuHHkvOKJp6m+LdKp5sVKFYf6ZtSFhrA=="
+  "resolved" "https://mirrors.cloud.tencent.com/npm/keyword-extractor/-/keyword-extractor-0.0.25.tgz"
+  "version" "0.0.25"
+
 "kind-of@^3.0.2", "kind-of@^3.0.3", "kind-of@^3.2.0":
   "integrity" "sha1-MeohpzS6ubuw8yRm2JOupR5KPGQ="
   "resolved" "https://mirrors.cloud.tencent.com/npm/kind-of/-/kind-of-3.2.2.tgz"
@@ -2546,7 +2555,7 @@
   dependencies:
     "moment" ">= 2.9.0"
 
-"moment@^2.19.1", "moment@^2.29.1", "moment@^2.8.4", "moment@>= 2.9.0":
+"moment@^2.19.1", "moment@^2.29.1", "moment@^2.8.4", "moment@>= 2.9.0", "moment@latest":
   "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
   "resolved" "https://mirrors.cloud.tencent.com/npm/moment/-/moment-2.29.4.tgz"
   "version" "2.29.4"

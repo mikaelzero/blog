@@ -1,20 +1,20 @@
 # 相关配置说明
-  # favicon: 网站图标
-  # avatar: 主题用户头像与昵称
-  # rss: rss订阅
-  # gtag: Google 分析
-  # comments: 文章评论系统
-    # gitalk
-    # disqus
-  # navbar: 主题页面导航栏
-  # catalog: 文章目录
-  # prevnext: 文章末尾的上一页与下一页
-  # friends: 友链
-  # footer: 页脚信息
-  # search: 文章搜索
-  # colorSwitch: 深/浅配色切换
-  # postShare: 文章分享
-  # codeBlock: 代码块配置
+# favicon: 网站图标
+# avatar: 主题用户头像与昵称
+# rss: rss订阅
+# gtag: Google 分析
+# comments: 文章评论系统
+# gitalk
+# disqus
+# navbar: 主题页面导航栏
+# catalog: 文章目录
+# prevnext: 文章末尾的上一页与下一页
+# friends: 友链
+# footer: 页脚信息
+# search: 文章搜索
+# colorSwitch: 深/浅配色切换
+# postShare: 文章分享
+# codeBlock: 代码块配置
 
 # enable: 是否开启相应功能，可选true || false
 
@@ -71,7 +71,7 @@ comments:
     # 例：我注册配置完毕后的网址为zxcxxxx.disqus.com，https-zxcxxxx-github-io即为shortname
     enable: false
     shortname: https-zxcxxxx-github-io
-  
+
   # waline https://waline.js.org
   waline:
     enable: false
@@ -79,26 +79,23 @@ comments:
 
 # 主题页面导航栏
 navbar:
-  -
-    name: Posts
+  - name: Posts
     enable: true
     path: /
     key: home
-  -
-  #   name: 归档
-  #   enable: true
-  #   path: /archives/
-  #   key: archives
-  # -
-    name: Tags
+  - name: Archives
+    enable: true
+    path: /archives/
+    key: archives
+  - name: Tags
     enable: true
     path: /tags/
     key: tags
-  -
-    name: About
-    enable: true
-    path: /about/
-    key: about
+  # -
+  #   name: About
+  #   enable: true
+  #   path: /about/
+  #   key: about
   # -
   #   name: RSS
   #   enable: true
@@ -118,12 +115,10 @@ friends:
   # nickname: 昵称
   # site: 地址
   # meta: 描述
-  -
-    nickname: Zcheng
+  - nickname: Zcheng
     site: https://zcheng.site/
     meta:
-  -
-    nickname: Hexo
+  - nickname: Hexo
     site: https://hexo.io/
     meta:
 
@@ -137,12 +132,10 @@ footer:
     # path: 地址
 
     # 按需取消注释以启用
-    -
-      name: github
+    - name: github
       icon: github
       path: https://github.com/mikaelzero
-    -
-      name: rss
+    - name: rss
       icon: rss
       path: /atom.xml
 
@@ -150,28 +143,24 @@ footer:
     # 支持变量显示，可自定义扩展，具体见主题/layout/_partial/footer.ejs
     # 一般用来显示根据各种场景需要切换的文本，如时间年份
     # 如：{thisYear} 会被替换为今年年份
-    -
-      name: Theme by Oranges | Powered by Hexo
+    - name: Theme by Oranges | Powered by Hexo
       path: https://github.com/zchengsite/hexo-theme-oranges
 
   # 浏览量统计
   # http://busuanzi.ibruce.info/
   views:
     enable: true
-    provider: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+    provider: "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
     item:
-      -
-        enable: false
+      - enable: false
         id: busuanzi_value_site_pv
         name: 本站总访问量
         unit: 次
-      -
-        enable: false
+      - enable: false
         id: busuanzi_value_page_pv
         name: 本文总阅读量
         unit: 次
-      -
-        enable: false
+      - enable: false
         id: busuanzi_value_site_uv
         name: 本站访客数
         unit: 人
@@ -201,7 +190,7 @@ postShare:
 codeBlock:
   # 代码块风格，默认normal
   # 可选：默认风格'normal'；mac黑色风格：'mac-black'
-  style: 'mac-black'
+  style: "mac-black"
   # 代码复制
   copy:
     enable: true
@@ -252,4 +241,4 @@ cdns:
       url: https://cdn.jsdelivr.net/npm/@waline/client@2.5.1/dist/legacy.min.js
 
 # 主题色
-themeColor: '#2BA245'
+themeColor: "#2BA245"
