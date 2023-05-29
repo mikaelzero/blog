@@ -177,9 +177,13 @@ vec3 hsb2rgb(in vec3 c) {
 
 ![](images/opengl/shader_color_wheel.png)
 
-极坐标下的色轮表示
+### 极坐标
+
+在数学中，极坐标系（英语：polar coordinate system）是一个二维坐标系统。该坐标系统中任意位置可由一个夹角和一段相对原点—极点的距离来表示。
 
 ![](images/opengl/polar_coordinate.svg)
+
+在极点为 O、极轴为 L 的极坐标系里，点（3, 60°）的径向坐标为 3、角坐标为 60°，点（4, 210°）的径向坐标为 4、角坐标为 210°。
 
 下面的代码就是实现了一个色轮
 
