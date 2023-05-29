@@ -87,6 +87,11 @@ a:hover {
     opacity: 0;
     z-index: -1;
   }
+  .post-item {
+    display: flex;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 1200px) and (min-width: 887px) {
@@ -97,7 +102,6 @@ a:hover {
 
 .post-item {
   display: flex;
-  font-size: 1.6rem;
   margin-bottom: 20px;
 }
 
