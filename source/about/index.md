@@ -1,9 +1,20 @@
 ---
-title: tags
-date: 2019-05-03 12:03:35
-type: "about"
-categories:
-tags:
+robots: "index,nofollow"
+menu_id: more
+seo_title: 关于
+sidebar: [welcome, ghuser]
+toc_title: 关于我
+comment_title: 来过，就留下您的脚印吧～
+comment_id: "留言板"
+comments: true
+breadcrumb: false
+header: false
 ---
 
-Nothing in here.
+{% about avatar:/assets/images/avatar.png height:120px %}
+
+Simple...
+
+<!-- {% navbar [文章](/) [项目](/wiki/) [书签](/bookmark/) [友链](/friends/) [留言](#comments) %} -->
+
+{% endabout %}
