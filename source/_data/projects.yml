@@ -1,7 +1,7 @@
 mojito:
   name: mojito
-  title: mojito 
-  subtitle: '顺滑的转场效果 | Designed by mikaelzero'
+  title: mojito
+  subtitle: "顺滑的转场效果 | Designed by mikaelzero"
   tags: Github
   cover: true
   logo:
@@ -13,8 +13,8 @@ mojito:
 
 Piko:
   name: Piko
-  title: Piko 
-  subtitle: 'P站第三方客户端，flutter跨平台 | Designed by mikaelzero'
+  title: Piko
+  subtitle: "P站第三方客户端，flutter跨平台 | Designed by mikaelzero"
   tags: Github
   cover: true
   logo:
@@ -24,11 +24,10 @@ Piko:
   description: P站第三方客户端，flutter跨平台
   repo: mikaelzero/Piko
 
-
 AndroidBookmark:
   name: bookmark
-  title: AndroidBookmark 
-  subtitle: '整理的和Android相关的书签 | Designed by mikaelzero'
+  title: AndroidBookmark
+  subtitle: "整理的和Android相关的书签 | Designed by mikaelzero"
   tags: Github
   cover: true
   logo:

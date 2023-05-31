@@ -41,7 +41,7 @@ style:
     body: fangzheng_yuan,'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
   # codeblock:
   #   highlightjs_theme: /custom/css/ZYCode.css
-  darkmode: false # auto / always / false
+  darkmode: auto # auto / always / false
 
 article:
   auto_cover: true
