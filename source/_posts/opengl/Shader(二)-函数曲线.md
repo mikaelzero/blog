@@ -4,6 +4,7 @@ urlname: shader-function-curve
 date: 2023/05/03
 tags:
   - Shader
+  - OpenGL
 ---
 
 先看看实现函数曲线的 glsl 代码：

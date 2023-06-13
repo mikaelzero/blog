@@ -4,6 +4,7 @@ urlname: shader-shapes
 date: 2023/05/29
 tags:
   - Shader
+  - OpenGL
 ---
 
 引用链接: [thebookofshaders-形状](https://thebookofshaders.com/07/?lan=ch)

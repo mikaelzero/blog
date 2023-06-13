@@ -4,6 +4,7 @@ urlname: shader-color
 date: 2023/05/05
 tags:
   - Shader
+  - OpenGL
 ---
 
 颜色一般我们会使用 rgb 来读取，同样的，也可以使用 xyz 来读取:
