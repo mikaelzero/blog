@@ -39,6 +39,12 @@ double dpi = diagonal_pixels / screen_size;
 
 DPI 问题解决后，基本上大部分的 app 都能够正常显示，但是当有些 app 根据屏幕的宽度来绘制 View 大小的时候会出现一些问题。
 
+假设在一个页面中要显示一个按钮，这个按钮是屏幕宽度的一般，如下图，正常情况下是左边正常显示，但是实际现象为右边。
+
+![](images/android/android_2d_error_in_vr.jpg)
+
+如果我屏幕大小是 5K，VirtualDisplay 的大小是 1920\*1080，而 app 根据屏幕宽度的一半来绘制一个 Button 的话，这个 Button 的大小就会是 2K 多的大小，就会远远超过 VirtualDisplay 的宽度，显示自然是不正常的。
+
 因为在获取屏幕宽高的时候，大多数都是直接获取主屏幕的大小，比如下面一个工具类中获取屏幕高度的方式:
 
 ```java
@@ -55,9 +61,7 @@ DPI 问题解决后，基本上大部分的 app 都能够正常显示，但是�
     }
 ```
 
-可以看到是直接 getDefaultDisplay()来获取大小，显然这是不正确的。
-
-如果我屏幕大小是 5K，VirtualDisplay 的大小是 1920\*1080，而 app 根据屏幕宽度的一般来绘制一个 Button 的话，这个 Button 的大小就会是 2K 多的大小，就会远远超过 VirtualDisplay 的宽度，显示自然是不正常的。
+可以看到是直接 getDefaultDisplay()来获取大小，显然这是不正确的。严谨的说，获取的时候需要指定 DisplayId，只是大部分场景只有一个主屏幕。
 
 首先我们无法拦截用户去获取主屏幕，所以只能在 getRealSize 等代码中做文章。
 
@@ -71,13 +75,49 @@ if(mDisplayId==0){
     int tempDisplayId = mDisplayService.getTargetDisplayId();
     newInfo = mGlobal.getDisplayInfo(tempDisplayId);
 }else{
-    newInfo =mGlobal.getDisplayInfo(mDisplayId);
+    newInfo = mGlobal.getDisplayInfo(mDisplayId);
 }
 ```
 
 mDisplayService 是自己的一个 Binder 对象，因为 VirtualDisplay 都是在 services 包下面的，而这里的代码是在 base 的 client 端下，所以需要 Binder 通信。
 
-另外还有一个获取 Density 的方法:
+大致的代码如下:
+
+```java
+    public int getTargetDisplayId() {
+        int uid = Binder.getCallingUid();
+        if (uid == 0 || uid == 1000) {
+            return 0;
+        }
+
+        getServiceLocked();
+        if (mService == null) {
+            return 0;
+        }
+
+        //如果是主屏幕的调用方则不进行binder处理
+        int[] ids = DisplayManagerGlobal.getInstance().getDisplayIds();
+        for (int id : ids) {
+            if (DisplayManagerGlobal.getInstance().isUidPresentOnDisplay(uid, id)) {
+                if (id == 0) {
+                    return 0;
+                }
+            }
+        }
+        if (mService != null) {
+            try {
+                return mService.getTargetDisplayId(uid);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return 0;
+    }
+```
+
+## Density
+
+另外还有一个获取 Density 的方法,比如 B 站在显示某些 View 的时候就是根据这个信息来设置大小，所以这部分也需要进行拦截，否则显示一样会异常。
 
 ```java
     public static float getScreenDensity() {
@@ -85,6 +125,34 @@ mDisplayService 是自己的一个 Binder 对象，因为 VirtualDisplay 都是�
     }
 ```
 
-正常而言，应该是根据 Context 的 Resource 来获取对应的信息，才会获取到正确的屏幕信息，这个方法获取的事默认的屏幕信息，也就是主屏幕。
+正常而言，应该是根据 Context 的 Resource 来获取对应的信息，才会获取到正确的屏幕信息，而这个方法获取的是默认的屏幕信息，也就是主屏幕。
 
-按道理来说也应该拦截，但是很少有 app 会获取这个东西来绘制吧，所以可以不处理，如果想处理的话，思路也是类似的。
+这部分的拦截需要再 ResourcesImpl 的 getDisplayMetrics 获取的时候进行拦截，
+
+```java
+    DisplayMetrics getDisplayMetrics() {
+        if(mPreloading){
+            return mMetrics;
+        }
+        int displayId = YourServiceManagerGlobal.getInstance().getTargetDisplayId();
+        if (displayId != 0) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            DisplayManagerGlobal.getInstance().getRealDisplay(displayId).getMetrics(metrics);
+            return metrics;
+        }
+        return mMetrics;
+    }
+```
+
+注意一个地方，因为在 zygote 启动的时候也会去获取这个信息，具体逻辑在 ZygoteInit 的 preloadResources 方法中
+
+```java
+private static void preloadResources() {
+    ......
+    mResources = Resources.getSystem();
+    mResources.startPreloading();
+    ......
+}
+```
+
+这个时候 binder 是无法使用的，所以需要加一个 mPreloading 的判断。
