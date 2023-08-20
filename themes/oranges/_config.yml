@@ -91,11 +91,11 @@ navbar:
     enable: true
     path: /tags/
     key: tags
-  # -
-  #   name: About
-  #   enable: true
-  #   path: /about/
-  #   key: about
+  -
+    name: About
+    enable: true
+    path: /about/
+    key: about
   # -
   #   name: RSS
   #   enable: true
