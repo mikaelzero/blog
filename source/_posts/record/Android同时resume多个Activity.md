@@ -1,6 +1,6 @@
 ---
 title: Android同时resume多个Activity
-urlname: resume-multiple-activities-simultaneously-after-waking_up-from-sleep.
+urlname: resumemultipleactivities-after-wakingsleep
 date: 2023/03/28
 tags:
   - Framework

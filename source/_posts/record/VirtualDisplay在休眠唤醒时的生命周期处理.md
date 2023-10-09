@@ -1,6 +1,6 @@
 ---
 title: VirtualDisplay在休眠唤醒时的生命周期处理
-urlname: lifecycle-processing-of-VirtualDisplay-when-waking-up-from-sleep
+urlname: lifecycle-virtualdisplay-waking-sleep
 date: 2023/04/18
 tags:
   - Framework

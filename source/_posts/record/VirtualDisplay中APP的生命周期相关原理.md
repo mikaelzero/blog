@@ -1,6 +1,6 @@
 ---
 title: VirtualDisplay中APP的生命周期处理
-urlname: life-cycle-processing-of-app-in-VirtualDisplay
+urlname: lifecycle-processing-app-virtualdisplay
 date: 2023/04/20
 tags:
   - VirtualDisplay
